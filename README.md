@@ -2,7 +2,7 @@
 
 ## 1. Requirement
 * Track student's learning subjects (time, weekdays, study period from beginning to end date, Class code, Teacher's info, Attendee's tracking progress, credits, semester)
-* Calculate scores (tests, total, average, GPA, etc)
+* Calculate scores (tests, total, average, GPA, scoring letters, etc)
 
 ## 2. Project scope
 * Track student's learning subjects:
@@ -22,4 +22,11 @@
         - Numbers of days absent from class      
         - Total percentage of days attending
     - Credits
-    - Class in semester    
+    - Class in semester   
+* Calculate scores:
+    - In tests(individual test in total of 3 or 4 tests taken)
+    - In total of all tests
+    - In average of all tests
+    - In GPA
+    - In scoring letters (A/A+ to F)
+  
