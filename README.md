@@ -3,6 +3,8 @@
 ## 1. Requirement
 * Track student's learning subjects (time, weekdays, study period from beginning to end date, Class code, Teacher's info, Attendee's tracking progress, credits, semester)
 * Calculate scores (tests, total, average, GPA, scoring letters, etc)
+* Adjust list of studying subjects in that semester 
+* Display list of asigned subjects in semesters
 
 ## 2. Project scope
 * Track student's learning subjects:
@@ -29,4 +31,8 @@
     - In average of all tests
     - In GPA
     - In scoring letters (A/A+ to F)
-  
+* Adjust list of studying subjects in that semester:
+    - Add new subjects
+    - Remove subjects that will not attend(eligible 'til that subject starts)
+    - Update information of subjects(in case of incorrect info)
+* Display list of asigned subjects in semesters
