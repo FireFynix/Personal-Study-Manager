@@ -36,3 +36,14 @@
     - Remove subjects that will not attend(eligible 'til that subject starts)
     - Update information of subjects(in case of incorrect info)
 * Display list of asigned subjects in semesters
+
+## 3. Versions
+
+### v0.0.0
+
+#### 1. Requirements
+#### 2. Clarification
+#### 3. Idea & Design
+#### 4. Implementation
+#### 5. Testing 
+#### 6. Review
