@@ -42,8 +42,23 @@
 ### v0.0.0
 
 #### 1. Requirements
+- Manage only a single subject
+- Manage single subject's credits
 #### 2. Clarification
+- No need to display any other subject's info(Focus solely on 1)
+- Min credits at 0 to 20 at max ( Interger number )
+- Add new credits
+- Display the credits of that subject
+- Out of scope:
+    - No name of the subjects
+    - Remove the credits
+    - Update the credits
 #### 3. Idea & Design
+- UI: console
+- UI flow: 
+    - Prompt user: Insert numbers of credits
+    - After insert, display numbers of credits
 #### 4. Implementation
 #### 5. Testing 
 #### 6. Review
+
