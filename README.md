@@ -59,6 +59,15 @@
     - Prompt user: Insert numbers of credits
     - After insert, display numbers of credits
 #### 4. Implementation
+- [main.c](main.c)
 #### 5. Testing 
+| Scenario | Input | Output |
+| :--- | :--- | :--- |
+| 1 | 0 | 0 |
+| 2 | 20 | 20 |
+| 3 | 12 | 12 |
+| 4 | -7 | Retry from 0 - 20: |
+| 5 | 21 | Retry from 0 - 20: |
+
 #### 6. Review
 
