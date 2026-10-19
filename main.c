@@ -1,20 +1,21 @@
 #include<stdio.h>
+#include<stdbool.h>
 
 int main()
 {
     int x;
-    int isXValid;
+    bool isXInvalid;
     do
     {
         printf("Insert the number of credits: ");
         scanf("%d", &x);
-        isXValid = !(x >= 0 && x <= 20);
-        if(isXValid == 1)
+        isXInvalid = !(x >= 0 && x <= 20);
+        if(isXInvalid == true)
         {
             printf("Credits only from 0 to 20, please retry\n");
         }
     }
-    while(isXValid == 1);
+     while(isXInvalid == true);
     printf("Your subject's credits currently: %d\n", x);
    
     return 0;
