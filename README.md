@@ -46,7 +46,7 @@
 - Manage single subject's credits
 #### 2. Clarification
 - No need to display any other subject's info(Focus solely on 1)
-- Min credits at 0 to 20 at max ( Interger number )
+- Input: Credits (integer, range [0; 20])
 - Add new credits
 - Display the credits of that subject
 - Out of scope:
@@ -66,8 +66,5 @@
 | 1 | 0 | 0 |
 | 2 | 20 | 20 |
 | 3 | 12 | 12 |
-| 4 | -7 | Retry from 0 - 20: |
-| 5 | 21 | Retry from 0 - 20: |
 
 #### 6. Review
-

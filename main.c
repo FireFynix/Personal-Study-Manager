@@ -2,14 +2,9 @@
 
 int main()
 {
-    int n;
+    int x;
     printf("Insert the number of credits: ");
-    scanf("%d", &n);
-    while( n > 20 || n < 0)
-    {
-        printf("Retry from 0 - 20: ");
-        scanf("%d", &n); 
-    }
-    printf("Your subject's credits currently: %d\n", n);
+    scanf("%d", &x);
+    printf("Your subject's credits currently: %d\n", x);
     return 0;
 }
