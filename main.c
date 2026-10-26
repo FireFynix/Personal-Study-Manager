@@ -16,7 +16,6 @@ int main()
         }
     }
     while(isXInvalid);
-    printf("Your subject's credits currently: %d\n", x);
    
     int s;
     bool isSInvalid;
@@ -30,7 +29,23 @@ int main()
             printf("Error: not valid, pls retry.\n");
         }
     } while (isSInvalid);
-    printf("Current semester: %d\n", s);
+
+    int d;
+    bool isDInvalid;
+    do
+    {
+        printf("Enter number of studying days per week (1-3): ");
+        scanf("%d",&d);
+        isDInvalid = !(d >= 1 && d <= 3);
+        if(isDInvalid)
+        {
+            printf("Error: not valid, pls retry.\n");
+        }
+    } while (isDInvalid);
     
+    printf("Your subject's credits currently: %d\n", x);
+    printf("Current semester: %d\n", s);
+    printf("Number of studying days per week: %d\n", d);
+
     return 0;
 }
