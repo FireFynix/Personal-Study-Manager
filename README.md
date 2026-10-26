@@ -39,6 +39,21 @@
 
 ## 3. Versions
 
+### v0.0.1
+
+#### 1. Requirements: RPM001
+- Mục tiêu: khi nhập sai kiểu (ví dụ gõ chữ thay vì số), chương trình báo lỗi và yêu cầu nhập lại, không bị kẹt hay lặp mãi.
+
+#### 2. Clarification
+- Focus / Scope: Handle non-numeric / invalid input types. 
+- Constraints: Input must be a valid integer. 
+- Input: Credits (guaranteed to be integer, range [0; 20])(the program will automatically handle with the character the user input)
+- Business rules: Clear buffer when input stream fails(Input: String or char (e.g., "abc") )
+-  Edge cases:
+    - Input: String or char (e.g., "abc") 
+    - Expected Response: Display "Credits only from 0 to 20, please retry" and prompt user to re-enter. 
+- Out of scope: Dynamic memory allocation for input buffer.
+
 ### v0.0.0
 
 #### 1. Requirements
