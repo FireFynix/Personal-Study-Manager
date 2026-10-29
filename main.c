@@ -46,8 +46,6 @@ int main()
     int w, h1, m1, h2, m2;
     bool isWInvalid;
     bool isH1H2M1M2Invalid;
-    char dayName[10];
-
     for (int i = 1; i <= d; i++) {
         do {
             printf("Enter weekday for day %d: ", i);
@@ -69,7 +67,8 @@ int main()
             }
         } while (isH1H2M1M2Invalid); 
     }       
-    
+
+    char dayName[10];
     if (w == 2) sprintf(dayName, "Monday");
     else if (w == 3) sprintf(dayName, "Tuesday");
     else if (w == 4) sprintf(dayName, "Wednesday");
@@ -78,33 +77,9 @@ int main()
     else if (w == 7) sprintf(dayName, "Saturday");
     else if (w == 8) sprintf(dayName, "Sunday");
 
-    int t, a;
-    bool isTAInvalid;
-    do {
-        printf("Enter total sessions: ");
-        scanf("%d", &t);
-        printf("Enter absent sessions: ");
-        scanf("%d", &a);
-        isTAInvalid = !((t >= 0 && t <= 30) && (a >= 0 && a <= 30) && (t - a >= 0));
-        if (isTAInvalid) 
-        {
-            printf("Error: Not valid, retry.\n");
-        }
-    } while (isTAInvalid);
-
-    float r;
-    if (t == 0) 
-    {
-        r = 0.0;
-    } else {
-        r = ((float)a / t) * 100.0;
-    }
-
     printf("Your subject's credits currently: %d\n", x);
     printf("Current semester: %d\n", s);
     printf("Number of studying days per week: %d\n", d);
-    printf("Schedule: %s %02d:%02d - %02d:%02d\n", dayName, h1, m1, h2, m2);    
-    printf("Total sessions: %d, Absent sessions: %d | Non - Attendance Rate: %.2f%%\n", t, a, r);
-
+    printf("Schedule: Day %d %02d:%02d - %02d:%02d\n", w, h1, m1, h2, m2);    
     return 0;
 }
