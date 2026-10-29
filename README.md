@@ -39,6 +39,26 @@
 
 ## 3. Versions
 
+### v0.0.3
+#### 1. Requirements: RC003
+- Tôi muốn theo dõi chuyên cần: nhập số buổi có mặt và số buổi vắng, và xem tỷ lệ chuyên cần của môn.
+
+#### 2. Clarification
+- Focus / Scope: Track the number of total and absent sessions for a subject and display
+- Input:
+    - Total Sessions (guaranteed to be integer, range [0; 30])
+    - Absent Sessions (guaranteed to be integer, range [0; 30])
+- Output: 
+    - Percentage of Non-attendance rate (r) (real, range [0; 100], precision of 2 digits after decimal points, unit: %); display format: "Non - Attendance Rate: XX.XX%" (e.g., 90.00%).
+- Business rules:
+    - Total sessions >= absent sessions
+    - Formula: r = (a / t )* 100.0 
+- Explicit float casting is mandatory to prevent integer division precision loss. 
+- Edge cases: 
+    - Input: t < 0 or t - a < 0 (Total - Absent < 0) or negative numbers (e.g., t = -2). 
+    - Expected Response: Display "Error: Not valid, retry." and prompt user to re-enter.
+- Out of scope: Automatic exam disqualification warning (in case of absent sessions(a) is exceed the limit of maxmimum absent sessions required by the teacher)
+
 ### v0.0.2
 #### 1. Requirements: RC002
 - Tôi muốn ghi nhận học kỳ và lịch học của môn. Một môn có thể học nhiều buổi trong tuần, mỗi buổi có giờ bắt đầu và giờ kết thúc, và giờ kết thúc phải sau giờ bắt đầu. Lịch hiển thị rõ ràng, dễ đọc.
