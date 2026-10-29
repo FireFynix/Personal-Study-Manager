@@ -69,6 +69,7 @@ int main()
             }
         } while (isH1H2M1M2Invalid); 
     }       
+    
     if (w == 2) sprintf(dayName, "Monday");
     else if (w == 3) sprintf(dayName, "Tuesday");
     else if (w == 4) sprintf(dayName, "Wednesday");
