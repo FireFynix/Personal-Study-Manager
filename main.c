@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<stdbool.h>
 
-
 int main()
 {
     int x;
@@ -15,8 +14,7 @@ int main()
         {
             printf("Credits only from 0 to 20, please retry\n");
         }
-    }
-    while(isXInvalid);
+    } while(isXInvalid);
    
     int s;
     bool isSInvalid;
@@ -44,43 +42,62 @@ int main()
         }
     } while (isDInvalid);
     
-    int w, h1, m1, h2, m2;
+    int w_arr[3], h1_arr[3], m1_arr[3], h2_arr[3], m2_arr[3];
     bool isWInvalid;
     bool isH1H2M1M2Invalid;
-    for (int i = 1; i <= d; i++) {
-        do {
+    char dayName[10];
+
+    for (int i = 1; i <= d; i++) 
+    {
+        do 
+        {
             printf("Enter weekday for day %d: ", i);
-            scanf("%d", &w);
-            isWInvalid = !(w >= 2 && w <= 8);
+            scanf("%d", &w_arr[i-1]); 
+            isWInvalid = !(w_arr[i-1] >= 2 && w_arr[i-1] <= 8);
             if (isWInvalid) 
             {
                 printf("Error: not valid, pls retry.\n");
             }
         } while (isWInvalid);
 
-        do{
+        do
+        {
             printf("Enter start time (h1, m1) and end time (h2, m2): ");
-            scanf("%d %d %d %d", &h1, &m1, &h2, &m2);
-            isH1H2M1M2Invalid = !((h1 >= 0 && h1 <= 23) && (h2 >= 0 && h2 <= 23) && (m1 >= 0 && m1 <= 59) && (m2 >= 0 && m2 <= 59) && ((h2 * 60 + m2) > (h1 * 60 + m1)));
+            scanf("%d %d %d %d", &h1_arr[i-1], &m1_arr[i-1], &h2_arr[i-1], &m2_arr[i-1]);
+            isH1H2M1M2Invalid = !((h1_arr[i-1] >= 0 && h1_arr[i-1] <= 23) && 
+                                  (h2_arr[i-1] >= 0 && h2_arr[i-1] <= 23) && 
+                                  (m1_arr[i-1] >= 0 && m1_arr[i-1] <= 59) && 
+                                  (m2_arr[i-1] >= 0 && m2_arr[i-1] <= 59) && 
+                                  ((h2_arr[i-1] * 60 + m2_arr[i-1]) > (h1_arr[i-1] * 60 + m1_arr[i-1])));
             if (isH1H2M1M2Invalid) 
             {
                 printf("Error: not valid, pls retry.\n");
             }
         } while (isH1H2M1M2Invalid); 
     }       
-
-    char dayName[10];
-    if (w == 2) sprintf(dayName, "Monday");
-    else if (w == 3) sprintf(dayName, "Tuesday");
-    else if (w == 4) sprintf(dayName, "Wednesday");
-    else if (w == 5) sprintf(dayName, "Thursday");
-    else if (w == 6) sprintf(dayName, "Friday");
-    else if (w == 7) sprintf(dayName, "Saturday");
-    else if (w == 8) sprintf(dayName, "Sunday");
+    
 
     printf("Your subject's credits currently: %d\n", x);
     printf("Current semester: %d\n", s);
     printf("Number of studying days per week: %d\n", d);
-    printf("Schedule: Day %d %02d:%02d - %02d:%02d\n", w, h1, m1, h2, m2);    
+    printf("Schedule: "); 
+    for (int i = 0; i < d; i++) 
+    {
+        if (w_arr[i] == 2) sprintf(dayName, "Monday");
+        else if (w_arr[i] == 3) sprintf(dayName, "Tuesday");
+        else if (w_arr[i] == 4) sprintf(dayName, "Wednesday");
+        else if (w_arr[i] == 5) sprintf(dayName, "Thursday");
+        else if (w_arr[i] == 6) sprintf(dayName, "Friday");
+        else if (w_arr[i] == 7) sprintf(dayName, "Saturday");
+        else if (w_arr[i] == 8) sprintf(dayName, "Sunday");
+
+        printf("%s %02d:%02d - %02d:%02d", dayName, h1_arr[i], m1_arr[i], h2_arr[i], m2_arr[i]);
+
+        if (i < d - 1) 
+        {
+            printf(", ");
+        }
+    }
+    printf("\n");    
     return 0;
 }
