@@ -39,6 +39,27 @@
 
 ## 3. Versions
 
+### v0.0.4
+#### 1. Requirements: RC005
+- Tôi muốn ghi nhận điểm kiểm tra của môn (số bài kiểm tra tùy theo từng môn), và xem từng điểm, tổng điểm, điểm trung bình.
+
+#### 2. Clarification
+- Focus / Scope: Record test scores, sum, and calculate average grade for a subject. 
+- Input: 
+    - Number of tests (n) (guaranteed to be integer, range [0; 10]) 
+    - Test grade (g) (guaranteed to be number, range [0.0, 10.0], precision of 1 digits after decimal points) 
+- Output:
+    - Sum of all grades' points (sum) (real, range [0.0; 100.0], precision of 1 digits after decimal points)
+    - Average of all grades' points (avg) (real, range [0.0; 10.0], precision of 1 digits after decimal points)
+- Business rules: 
+    - Formula: 
+        - sum = g1 + g2+ g3 + g4 + g5 + ..... + gn
+        - avg = sum / n
+- Edge cases: 
+    - Input: Grade g < 0.0 or g > 10.0 (e.g: 11.5 or -2.0) or n < 0 
+    - Expected Response: Display ""Error: Entry must be between 0.0 and 10.0."" and prompt re-entry for that test. 
+- Out of scope: Weighted grade calculations (e.g., midterm/final weight percentages).
+
 ### v0.0.3
 #### 1. Requirements: RC003
 - Tôi muốn theo dõi chuyên cần: nhập số buổi có mặt và số buổi vắng, và xem tỷ lệ chuyên cần của môn.
