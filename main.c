@@ -55,7 +55,10 @@ int main()
             printf("Enter weekday for day 1: ");
             scanf("%d", &w_1);
             isWInvalid = !(w_1 >= 2 && w_1 <= 8);
-            if (isWInvalid) printf("Error: not valid, pls retry.\n");
+            if (isWInvalid)
+            {
+                printf("Error: not valid, pls retry.\n");
+            }
         } while (isWInvalid);
 
         do 
@@ -77,7 +80,10 @@ int main()
             printf("Enter weekday for day 2: ");
             scanf("%d", &w_2);
             isWInvalid = !(w_2 >= 2 && w_2 <= 8);
-            if (isWInvalid) printf("Error: not valid, pls retry.\n");
+            if (isWInvalid)
+            {
+                printf("Error: not valid, pls retry.\n");
+            }
         } while (isWInvalid);
 
         do 
@@ -85,7 +91,10 @@ int main()
             printf("Enter start time (h1, m1) and end time (h2, m2): ");
             scanf("%d %d %d %d", &h1_2, &m1_2, &h2_2, &m2_2);
             isH1H2M1M2Invalid = !((h1_2 >= 0 && h1_2 <= 23) && (h2_2 >= 0 && h2_2 <= 23) && (m1_2 >= 0 && m1_2 <= 59) && (m2_2 >= 0 && m2_2 <= 59) && ((h2_2 * 60 + m2_2) > (h1_2 * 60 + m1_2)));
-            if (isH1H2M1M2Invalid) printf("Error: not valid, pls retry.\n");
+            if (isH1H2M1M2Invalid)
+            {
+                printf("Error: not valid, pls retry.\n");
+            }
         } while (isH1H2M1M2Invalid);
     }
 
@@ -96,7 +105,10 @@ int main()
             printf("Enter weekday for day 3: ");
             scanf("%d", &w_3);
             isWInvalid = !(w_3 >= 2 && w_3 <= 8);
-            if (isWInvalid) printf("Error: not valid, pls retry.\n");
+            if (isWInvalid)
+            {
+                printf("Error: not valid, pls retry.\n");
+            }
         } while (isWInvalid);
 
         do 
@@ -104,7 +116,10 @@ int main()
             printf("Enter start time (h1, m1) and end time (h2, m2): ");
             scanf("%d %d %d %d", &h1_3, &m1_3, &h2_3, &m2_3);
             isH1H2M1M2Invalid = !((h1_3 >= 0 && h1_3 <= 23) && (h2_3 >= 0 && h2_3 <= 23) && (m1_3 >= 0 && m1_3 <= 59) && (m2_3 >= 0 && m2_3 <= 59) && ((h2_3 * 60 + m2_3) > (h1_3 * 60 + m1_3)));
-            if (isH1H2M1M2Invalid) printf("Error: not valid, pls retry.\n");
+            if (isH1H2M1M2Invalid) 
+            {
+                printf("Error: not valid, pls retry.\n");
+            }
         } while (isH1H2M1M2Invalid);
     }
     
