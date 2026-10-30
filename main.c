@@ -47,7 +47,6 @@ int main()
     int w_3, h1_3, m1_3, h2_3, m2_3;
     bool isWInvalid;
     bool isH1H2M1M2Invalid;
-    char dayName[10];
 
     if (d >= 1) 
     {
@@ -116,37 +115,118 @@ int main()
     printf("Schedule: "); 
     if (d >= 1) 
     {
-        if (w_1 == 2) printf("Monday %02d:%02d - %02d:%02d", h1_1, m1_1, h2_1, m2_1);
-        else if (w_1 == 3) printf("Tuesday %02d:%02d - %02d:%02d", h1_1, m1_1, h2_1, m2_1);
-        else if (w_1 == 4) printf("Wednesday %02d:%02d - %02d:%02d", h1_1, m1_1, h2_1, m2_1);
-        else if (w_1 == 5) printf("Thursday %02d:%02d - %02d:%02d", h1_1, m1_1, h2_1, m2_1);
-        else if (w_1 == 6) printf("Friday %02d:%02d - %02d:%02d", h1_1, m1_1, h2_1, m2_1);
-        else if (w_1 == 7) printf("Saturday %02d:%02d - %02d:%02d", h1_1, m1_1, h2_1, m2_1);
-        else if (w_1 == 8) printf("Sunday %02d:%02d - %02d:%02d", h1_1, m1_1, h2_1, m2_1);
+        switch(w_1)
+        {
+            case 2:
+                printf("Monday");
+                break;
+            
+            case 3:
+                printf("Tuesday");
+                break;
+            
+            case 4:
+                printf("Wednesday");
+                break;
+            
+            case 5:
+                printf("Thursday");
+                break;
+            
+            case 6:
+                printf("Friday");
+                break;
+            
+            case 7:
+                printf("Saturday");
+                break;
+            
+            case 8:
+                printf("Sunday");
+                break;
+            
+            default:
+                break;
+        }
+        printf(" %02d:%02d - %02d:%02d", h1_1, m1_1, h2_1, m2_1);
     }
 
     if (d >= 2) 
     {
         printf(", ");
-        if (w_2 == 2) printf("Monday %02d:%02d - %02d:%02d", h1_2, m1_2, h2_2, m2_2);
-        else if (w_2 == 3) printf("Tuesday %02d:%02d - %02d:%02d", h1_2, m1_2, h2_2, m2_2);
-        else if (w_2 == 4) printf("Wednesday %02d:%02d - %02d:%02d", h1_2, m1_2, h2_2, m2_2);
-        else if (w_2 == 5) printf("Thursday %02d:%02d - %02d:%02d", h1_2, m1_2, h2_2, m2_2);
-        else if (w_2 == 6) printf("Friday %02d:%02d - %02d:%02d", h1_2, m1_2, h2_2, m2_2);
-        else if (w_2 == 7) printf("Saturday %02d:%02d - %02d:%02d", h1_2, m1_2, h2_2, m2_2);
-        else if (w_2 == 8) printf("Sunday %02d:%02d - %02d:%02d", h1_2, m1_2, h2_2, m2_2);
-    }
+        switch(w_2)
+        {
+            case 2:
+                printf("Monday");
+                break;
+            
+            case 3:
+                printf("Tuesday");
+                break;
+            
+            case 4:
+                printf("Wednesday");
+                break;
+            
+            case 5:
+                printf("Thursday");
+                break;
+            
+            case 6:
+                printf("Friday");
+                break;
+            
+            case 7:
+                printf("Saturday");
+                break;
+            
+            case 8:
+                printf("Sunday");
+                break;
+            
+            default:
+                break;
+        }
+        printf(" %02d:%02d - %02d:%02d", h1_2, m1_2, h2_2, m2_2);
+    }    
 
     if (d == 3) 
     {
         printf(", ");
-        if (w_3 == 2) printf("Monday %02d:%02d - %02d:%02d", h1_3, m1_3, h2_3, m2_3);
-        else if (w_3 == 3) printf("Tuesday %02d:%02d - %02d:%02d", h1_3, m1_3, h2_3, m2_3);
-        else if (w_3 == 4) printf("Wednesday %02d:%02d - %02d:%02d", h1_3, m1_3, h2_3, m2_3);
-        else if (w_3 == 5) printf("Thursday %02d:%02d - %02d:%02d", h1_3, m1_3, h2_3, m2_3);
-        else if (w_3 == 6) printf("Friday %02d:%02d - %02d:%02d", h1_3, m1_3, h2_3, m2_3);
-        else if (w_3 == 7) printf("Saturday %02d:%02d - %02d:%02d", h1_3, m1_3, h2_3, m2_3);
-        else if (w_3 == 8) printf("Sunday %02d:%02d - %02d:%02d", h1_3, m1_3, h2_3, m2_3);
+        switch(w_3)
+        {
+            case 2:
+                printf("Monday");
+                break;
+            
+            case 3:
+                printf("Tuesday");
+                break;
+            
+            case 4:
+                printf("Wednesday");
+                break;
+            
+            case 5:
+                printf("Thursday");
+                break;
+            
+            case 6:
+                printf("Friday");
+                break;
+            
+            case 7:
+                printf("Saturday");
+                break;
+            
+            case 8:
+                printf("Sunday");
+                break;
+            
+            default:
+                break;
+        }
+        printf(" %02d:%02d - %02d:%02d", h1_3, m1_3, h2_3, m2_3);
     }
     printf("\n");    
 
