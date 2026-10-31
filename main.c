@@ -221,6 +221,16 @@ int main()
         sum += g;
     }
 
+    float avg;
+    if (n == 0)
+    {
+        avg = 0.0;
+    } 
+    else 
+    {
+        avg = sum / n;
+    }
+
     printf("Your subject's credits currently: %d\n", x);
     printf("Current semester: %d\n", s);
     printf("Number of studying days per week: %d\n", d);
@@ -390,7 +400,6 @@ int main()
             printf(", ");
         }
     }
-    printf(" | Sum: %.1f", sum); 
-    printf("\n");    
+    printf(" | Sum: %.1f, Avg: %.1f\n", sum, avg);
     return 0;
 }
