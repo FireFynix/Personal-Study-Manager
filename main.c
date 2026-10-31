@@ -148,6 +148,79 @@ int main()
         r = ((float)a / t) * 100.0;
     }
 
+    int n;
+    bool isNInvalid;
+    do 
+    {
+        printf("Enter number of tests: ");
+        scanf("%d", &n);
+        isNInvalid = !(n >= 0 && n <= 10);
+        if (isNInvalid) 
+        {
+            printf("Error: Entry must be between 0.0 and 10.0\n");
+        }
+    } while (isNInvalid);
+
+    float sum = 0.0, g;
+    float g_1 = -1, g_2 = -1, g_3 = -1, g_4 = -1, g_5 = -1, g_6 = -1, g_7 = -1, g_8 = -1, g_9 = -1, g_10 = -1;
+    bool isGInvalid;
+
+    for (int i = 1; i <= n; i++) 
+    {
+        do 
+        {
+            printf("Enter grade for test %d: ", i);
+            scanf("%f", &g);
+            isGInvalid = !(g >= 0.0 && g <= 10.0);
+            if (isGInvalid) 
+            {
+                printf("Error: Entry must be between 0.0 and 10.0\n");
+            }
+        } while (isGInvalid);
+
+        if (i == 1) 
+        {
+            g_1 = g;
+        }
+        else if (i == 2) 
+        {
+            g_2 = g;
+        }
+        else if (i == 3)
+        {
+            g_3 = g;
+        }
+        else if (i == 4)
+        {
+            g_4 = g;
+        }
+        else if (i == 5) 
+        {
+            g_5 = g;
+        }
+        else if (i == 6) 
+        {
+            g_6 = g;
+        }    
+        else if (i == 7)
+        {
+            g_7 = g;  
+        }
+        else if (i == 8) 
+        {
+            g_8 = g;
+        }
+        else if (i == 9) 
+        {
+            g_9 = g;
+        }
+        else if (i == 10) 
+        {
+            g_10 = g;
+        }
+        sum += g;
+    }
+
     printf("Your subject's credits currently: %d\n", x);
     printf("Current semester: %d\n", s);
     printf("Number of studying days per week: %d\n", d);
@@ -188,7 +261,7 @@ int main()
                 break;
         }
         printf(" %02d:%02d - %02d:%02d", h1_1, m1_1, h2_1, m2_1);
-    }
+    }    
 
     if (d >= 2) 
     {
@@ -269,5 +342,55 @@ int main()
     }
     printf("\n");    
     printf("Total sessions: %d, Absent sessions: %d | Non - Attendance Rate: %.2f%%\n", t, a, r);
+    printf("Grades: ");
+    for (int i = 1; i <= n; i++) 
+    {
+        if (i == 1) 
+        {
+            printf("%.1f", g_1);
+        }
+        else if (i == 2)
+        {
+            printf("%.1f", g_2);
+        }
+        else if (i == 3) 
+        {
+            printf("%.1f", g_3);
+        }
+        else if (i == 4) 
+        {
+            printf("%.1f", g_4);
+        }
+        else if (i == 5) 
+        {
+            printf("%.1f", g_5);
+        }
+        else if (i == 6) 
+        {
+            printf("%.1f", g_6);
+        }
+        else if (i == 7) 
+        {
+            printf("%.1f", g_7);
+        }
+        else if (i == 8) 
+        {
+            printf("%.1f", g_8);
+        }
+        else if (i == 9) 
+        {
+            printf("%.1f", g_9);
+        }
+        else if (i == 10) 
+        {
+            printf("%.1f", g_10);
+        }
+        if (i < n) 
+        {
+            printf(", ");
+        }
+    }
+    printf(" | Sum: %.1f", sum); 
+    printf("\n");    
     return 0;
 }
