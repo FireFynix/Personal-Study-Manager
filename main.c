@@ -104,6 +104,7 @@ int main()
             isStartMinuteValid = m1_2 >= 0 && m1_2 <= 59;
             isEndMinuteValid   = m2_2 >= 0 && m2_2 <= 59;
             isEndAfterStart    = (h2_2 * 60 + m2_2) > (h1_2 * 60 + m1_2);
+            isH1H2M1M2Invalid = !(isStartHourValid && isEndHourValid && isStartMinuteValid && isEndMinuteValid && isEndAfterStart);
             if (isH1H2M1M2Invalid)
             {
                 printf("Error: not valid, pls retry.\n");
@@ -133,6 +134,7 @@ int main()
             isStartMinuteValid = m1_3 >= 0 && m1_3 <= 59;
             isEndMinuteValid   = m2_3 >= 0 && m2_3 <= 59;
             isEndAfterStart    = (h2_3 * 60 + m2_3) > (h1_3 * 60 + m1_3);
+            isH1H2M1M2Invalid = !(isStartHourValid && isEndHourValid && isStartMinuteValid && isEndMinuteValid && isEndAfterStart);
             if (isH1H2M1M2Invalid) 
             {
                 printf("Error: not valid, pls retry.\n");
