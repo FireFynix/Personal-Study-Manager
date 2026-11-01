@@ -39,7 +39,7 @@
 
 ## 3. Versions
 
-### v0.0.2
+### v0.1.0
 #### 1. Requirements: RC002
 - Tôi muốn ghi nhận học kỳ và lịch học của môn. Một môn có thể học nhiều buổi trong tuần, mỗi buổi có giờ bắt đầu và giờ kết thúc, và giờ kết thúc phải sau giờ bắt đầu. Lịch hiển thị rõ ràng, dễ đọc.
 
