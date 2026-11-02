@@ -39,7 +39,7 @@
 
 ## 3. Versions
 
-### v0.2.0
+### v0.2.0 
 #### 1. Requirements: RC003
 - Tôi muốn theo dõi chuyên cần: nhập số buổi có mặt và số buổi vắng, và xem tỷ lệ chuyên cần của môn.
 
