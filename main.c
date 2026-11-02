@@ -176,7 +176,7 @@ int main()
         isNInvalid = !(n >= 0 && n <= 10);
         if (isNInvalid) 
         {
-            printf("Error: Entry must be between 0.0 and 10.0\n");
+            printf("Error: Entry must be between 0 and 10\n");
         }
     } while (isNInvalid);
 
@@ -196,47 +196,52 @@ int main()
                 printf("Error: Entry must be between 0.0 and 10.0\n");
             }
         } while (isGInvalid);
+        
+        switch (i)
+        {
+            case 1:
+                g_1 = g;
+                break;
 
-        if (i == 1) 
-        {
-            g_1 = g;
-        }
-        else if (i == 2) 
-        {
-            g_2 = g;
-        }
-        else if (i == 3)
-        {
-            g_3 = g;
-        }
-        else if (i == 4)
-        {
-            g_4 = g;
-        }
-        else if (i == 5) 
-        {
-            g_5 = g;
-        }
-        else if (i == 6) 
-        {
-            g_6 = g;
-        }    
-        else if (i == 7)
-        {
-            g_7 = g;  
-        }
-        else if (i == 8) 
-        {
-            g_8 = g;
-        }
-        else if (i == 9) 
-        {
-            g_9 = g;
-        }
-        else if (i == 10) 
-        {
-            g_10 = g;
-        }
+            case 2:
+                g_2 = g;
+                break;
+            
+            case 3:
+                g_3 = g;
+                break;
+            
+            case 4:
+                g_4 = g;
+                break;
+            
+            case 5:
+                g_5 = g;
+                break;
+            
+            case 6:
+                g_6 = g;
+                break;
+            
+            case 7:
+                g_7 = g;
+                break;
+            
+            case 8:
+                g_8 = g;
+                break;
+
+            case 9:
+                g_9 = g;
+                break;
+
+            case 10:
+                g_10 = g;
+                break;
+
+            default:
+               break;
+        }   
         sum += g;
     }
 
@@ -374,46 +379,51 @@ int main()
     printf("Grades: ");
     for (int i = 1; i <= n; i++) 
     {
-        if (i == 1) 
+        switch (i)
         {
-            printf("%.1f", g_1);
-        }
-        else if (i == 2)
-        {
-            printf("%.1f", g_2);
-        }
-        else if (i == 3) 
-        {
-            printf("%.1f", g_3);
-        }
-        else if (i == 4) 
-        {
-            printf("%.1f", g_4);
-        }
-        else if (i == 5) 
-        {
-            printf("%.1f", g_5);
-        }
-        else if (i == 6) 
-        {
-            printf("%.1f", g_6);
-        }
-        else if (i == 7) 
-        {
-            printf("%.1f", g_7);
-        }
-        else if (i == 8) 
-        {
-            printf("%.1f", g_8);
-        }
-        else if (i == 9) 
-        {
-            printf("%.1f", g_9);
-        }
-        else if (i == 10) 
-        {
-            printf("%.1f", g_10);
-        }
+            case 1:
+                printf("%.1f", g_1); 
+                break;
+
+            case 2:
+                printf("%.1f", g_2);
+                break;
+            
+            case 3:
+                printf("%.1f", g_3);
+                break;
+            
+            case 4:
+                printf("%.1f", g_4); 
+                break;
+            
+            case 5:
+                printf("%.1f", g_5); 
+                break;
+            
+            case 6:
+                printf("%.1f", g_6); 
+                break;
+            
+            case 7:
+                printf("%.1f", g_7);
+                break;
+            
+            case 8:
+                printf("%.1f", g_8);
+                break;
+
+            case 9:
+                printf("%.1f", g_9); 
+                break;
+
+            case 10:
+                printf("%.1f", g_10);
+                break;
+
+            default:
+               break;
+        }   
         if (i < n) 
         {
             printf(", ");
