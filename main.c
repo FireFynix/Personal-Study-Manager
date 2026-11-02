@@ -25,7 +25,7 @@ int main()
         isSInvalid = !(s > 0);
         if(isSInvalid)
         {
-            printf("Error: not valid, pls retry.\n");
+            printf("Error: not valid, please retry.\n");
         }
     } while (isSInvalid);
 
@@ -38,7 +38,7 @@ int main()
         isDInvalid = !(d >= 1 && d <= 3);
         if(isDInvalid)
         {
-            printf("Error: not valid, pls retry.\n");
+            printf("Error: not valid, please retry.\n");
         }
     } while (isDInvalid);
     
@@ -47,7 +47,11 @@ int main()
     int w_3, h1_3, m1_3, h2_3, m2_3;
     bool isWInvalid;
     bool isH1H2M1M2Invalid;
-
+    bool isStartHourValid;   
+    bool isEndHourValid;     
+    bool isStartMinuteValid; 
+    bool isEndMinuteValid;   
+    bool isEndAfterStart;
     if (d >= 1) 
     {
         do 
@@ -57,7 +61,7 @@ int main()
             isWInvalid = !(w_1 >= 2 && w_1 <= 8);
             if (isWInvalid)
             {
-                printf("Error: not valid, pls retry.\n");
+                printf("Error: not valid, please retry.\n");
             }
         } while (isWInvalid);
 
@@ -65,10 +69,15 @@ int main()
         {
             printf("Enter start time (h1, m1) and end time (h2, m2): ");
             scanf("%d %d %d %d", &h1_1, &m1_1, &h2_1, &m2_1);
-            isH1H2M1M2Invalid = !((h1_1 >= 0 && h1_1 <= 23) && (h2_1 >= 0 && h2_1 <= 23) && (m1_1 >= 0 && m1_1 <= 59) && (m2_1 >= 0 && m2_1 <= 59) && ((h2_1 * 60 + m2_1) > (h1_1 * 60 + m1_1)));
+            isStartHourValid   = h1_1 >= 0 && h1_1 <= 23;
+            isEndHourValid     = h2_1 >= 0 && h2_1 <= 23;
+            isStartMinuteValid = m1_1 >= 0 && m1_1 <= 59;
+            isEndMinuteValid   = m2_1 >= 0 && m2_1 <= 59;
+            isEndAfterStart    = (h2_1 * 60 + m2_1) > (h1_1 * 60 + m1_1);
+            isH1H2M1M2Invalid = !(isStartHourValid && isEndHourValid && isStartMinuteValid && isEndMinuteValid && isEndAfterStart);
             if (isH1H2M1M2Invalid) 
             {
-                printf("Error: not valid, pls retry.\n");
+                printf("Error: not valid, please retry.\n");
             }    
         } while (isH1H2M1M2Invalid);
     }
@@ -82,7 +91,7 @@ int main()
             isWInvalid = !(w_2 >= 2 && w_2 <= 8);
             if (isWInvalid)
             {
-                printf("Error: not valid, pls retry.\n");
+                printf("Error: not valid, please retry.\n");
             }
         } while (isWInvalid);
 
@@ -90,10 +99,15 @@ int main()
         {
             printf("Enter start time (h1, m1) and end time (h2, m2): ");
             scanf("%d %d %d %d", &h1_2, &m1_2, &h2_2, &m2_2);
-            isH1H2M1M2Invalid = !((h1_2 >= 0 && h1_2 <= 23) && (h2_2 >= 0 && h2_2 <= 23) && (m1_2 >= 0 && m1_2 <= 59) && (m2_2 >= 0 && m2_2 <= 59) && ((h2_2 * 60 + m2_2) > (h1_2 * 60 + m1_2)));
+            isStartHourValid   = h1_2 >= 0 && h1_2 <= 23;
+            isEndHourValid     = h2_2 >= 0 && h2_2 <= 23;
+            isStartMinuteValid = m1_2 >= 0 && m1_2 <= 59;
+            isEndMinuteValid   = m2_2 >= 0 && m2_2 <= 59;
+            isEndAfterStart    = (h2_2 * 60 + m2_2) > (h1_2 * 60 + m1_2);
+            isH1H2M1M2Invalid = !(isStartHourValid && isEndHourValid && isStartMinuteValid && isEndMinuteValid && isEndAfterStart);
             if (isH1H2M1M2Invalid)
             {
-                printf("Error: not valid, pls retry.\n");
+                printf("Error: not valid, please retry.\n");
             }
         } while (isH1H2M1M2Invalid);
     }
@@ -107,7 +121,7 @@ int main()
             isWInvalid = !(w_3 >= 2 && w_3 <= 8);
             if (isWInvalid)
             {
-                printf("Error: not valid, pls retry.\n");
+                printf("Error: not valid, please retry.\n");
             }
         } while (isWInvalid);
 
@@ -115,10 +129,15 @@ int main()
         {
             printf("Enter start time (h1, m1) and end time (h2, m2): ");
             scanf("%d %d %d %d", &h1_3, &m1_3, &h2_3, &m2_3);
-            isH1H2M1M2Invalid = !((h1_3 >= 0 && h1_3 <= 23) && (h2_3 >= 0 && h2_3 <= 23) && (m1_3 >= 0 && m1_3 <= 59) && (m2_3 >= 0 && m2_3 <= 59) && ((h2_3 * 60 + m2_3) > (h1_3 * 60 + m1_3)));
+            isStartHourValid   = h1_3 >= 0 && h1_3 <= 23;
+            isEndHourValid     = h2_3 >= 0 && h2_3 <= 23;
+            isStartMinuteValid = m1_3 >= 0 && m1_3 <= 59;
+            isEndMinuteValid   = m2_3 >= 0 && m2_3 <= 59;
+            isEndAfterStart    = (h2_3 * 60 + m2_3) > (h1_3 * 60 + m1_3);
+            isH1H2M1M2Invalid = !(isStartHourValid && isEndHourValid && isStartMinuteValid && isEndMinuteValid && isEndAfterStart);
             if (isH1H2M1M2Invalid) 
             {
-                printf("Error: not valid, pls retry.\n");
+                printf("Error: not valid, please retry.\n");
             }    
         } while (isH1H2M1M2Invalid);
     }
