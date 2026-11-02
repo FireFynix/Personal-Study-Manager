@@ -39,6 +39,43 @@
 
 ## 3. Versions
 
+### v0.1.0
+
+#### 1. Requirements: RC002
+- Tôi muốn ghi nhận học kỳ và lịch học của môn. Một môn có thể học nhiều buổi trong tuần, mỗi buổi có giờ bắt đầu và giờ kết thúc, và giờ kết thúc phải sau giờ bắt đầu. Lịch hiển thị rõ ràng, dễ đọc.
+
+#### 2. Clarification
+- Focus / Scope: Record semester, weekday, start time, and end time.  
+- Input:
+    - Semester (guaranteed to be integer, range (0; +inf))
+    - Number of studying days per week ( guaranteed to be integer, range [1; 3])
+    - For each study days per week include:
+        -  Weekday (guaranteed to be integer, range [2; 8]) (2 = Monday, 3 = Tuesday, ..., 8 = Sunday)
+        -  Start time / End time: 
+            - Hour (guaranteed to be integer , range [0; 23])
+            - Minute (guaranteed to be integer, range [0; 59])
+- Business rules: End time > Start time. 
+- Output: Display timetable in formatted 24-hour string (HH:MM). 
+- Edge cases:
+    - Input: End time <= Start time (e.g., Start 10:00, End 09:00). 
+    - Expected Response: Display "Error: not valid, pls retry." and ask to re-enter. 
+- Out of scope: Dynamic conflict checking with other subjects.
+
+### v0.0.1
+
+#### 1. Requirements: RPM001
+- Mục tiêu: khi nhập sai kiểu (ví dụ gõ chữ thay vì số), chương trình báo lỗi và yêu cầu nhập lại, không bị kẹt hay lặp mãi.
+
+#### 2. Clarification
+- Focus / Scope: Handle non-numeric / invalid input types. 
+- Constraints: Input must be a valid integer. 
+- Input: Credits (guaranteed to be integer, range [0; 20])(the program will automatically handle with the character the user input)
+- Business rules: Clear buffer when input stream fails(Input: String or char (e.g., "abc") )
+-  Edge cases:
+    - Input: String or char (e.g., "abc") 
+    - Expected Response: Display "Credits only from 0 to 20, please retry" and prompt user to re-enter. 
+- Out of scope: Dynamic memory allocation for input buffer.
+
 ### v0.0.0
 
 #### 1. Requirements
