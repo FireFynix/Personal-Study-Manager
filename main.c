@@ -25,7 +25,7 @@ int main()
         isSInvalid = !(s > 0);
         if(isSInvalid)
         {
-            printf("Error: not valid, pls retry.\n");
+            printf("Error: not valid, please retry.\n");
         }
     } while (isSInvalid);
 
@@ -38,7 +38,7 @@ int main()
         isDInvalid = !(d >= 1 && d <= 3);
         if(isDInvalid)
         {
-            printf("Error: not valid, pls retry.\n");
+            printf("Error: not valid, please retry.\n");
         }
     } while (isDInvalid);
     
@@ -61,7 +61,7 @@ int main()
             isWInvalid = !(w_1 >= 2 && w_1 <= 8);
             if (isWInvalid)
             {
-                printf("Error: not valid, pls retry.\n");
+                printf("Error: not valid, please retry.\n");
             }
         } while (isWInvalid);
 
@@ -77,7 +77,7 @@ int main()
             isH1H2M1M2Invalid = !(isStartHourValid && isEndHourValid && isStartMinuteValid && isEndMinuteValid && isEndAfterStart);
             if (isH1H2M1M2Invalid) 
             {
-                printf("Error: not valid, pls retry.\n");
+                printf("Error: not valid, please retry.\n");
             }    
         } while (isH1H2M1M2Invalid);
     }
@@ -91,7 +91,7 @@ int main()
             isWInvalid = !(w_2 >= 2 && w_2 <= 8);
             if (isWInvalid)
             {
-                printf("Error: not valid, pls retry.\n");
+                printf("Error: not valid, please retry.\n");
             }
         } while (isWInvalid);
 
@@ -107,7 +107,7 @@ int main()
             isH1H2M1M2Invalid = !(isStartHourValid && isEndHourValid && isStartMinuteValid && isEndMinuteValid && isEndAfterStart);
             if (isH1H2M1M2Invalid)
             {
-                printf("Error: not valid, pls retry.\n");
+                printf("Error: not valid, please retry.\n");
             }
         } while (isH1H2M1M2Invalid);
     }
@@ -121,7 +121,7 @@ int main()
             isWInvalid = !(w_3 >= 2 && w_3 <= 8);
             if (isWInvalid)
             {
-                printf("Error: not valid, pls retry.\n");
+                printf("Error: not valid, please retry.\n");
             }
         } while (isWInvalid);
 
@@ -137,11 +137,35 @@ int main()
             isH1H2M1M2Invalid = !(isStartHourValid && isEndHourValid && isStartMinuteValid && isEndMinuteValid && isEndAfterStart);
             if (isH1H2M1M2Invalid) 
             {
-                printf("Error: not valid, pls retry.\n");
-            }
+                printf("Error: not valid, please retry.\n");
+            }    
         } while (isH1H2M1M2Invalid);
     }
-    
+
+    int t, a;
+    bool isTAInvalid;
+    do 
+    {
+        printf("Enter total sessions: ");
+        scanf("%d", &t);
+        printf("Enter absent sessions: ");
+        scanf("%d", &a);
+        isTAInvalid = !((t >= 0 && t <= 30) && (a >= 0 && a <= 30) && (t - a >= 0));
+        if (isTAInvalid) 
+        {
+            printf("Error: Not valid, retry.\n");
+        }
+    } while (isTAInvalid);
+
+    float r;
+    if (t == 0) 
+    {
+        r = 0.0;
+    } 
+    else 
+    {
+        r = ((float)a / t) * 100.0;
+    }
 
     printf("Your subject's credits currently: %d\n", x);
     printf("Current semester: %d\n", s);
@@ -263,6 +287,6 @@ int main()
         printf(" %02d:%02d - %02d:%02d", h1_3, m1_3, h2_3, m2_3);
     }
     printf("\n");    
-
+    printf("Total sessions: %d, Absent sessions: %d | Non - Attendance Rate: %.2f%%\n", t, a, r);
     return 0;
 }
