@@ -60,7 +60,7 @@
     - Expected Response: Display ""Error: Entry must be between 0.0 and 10.0."" and prompt re-entry for that test. 
 - Out of scope: Weighted grade calculations (e.g., midterm/final weight percentages).
 
-### v0.0.3
+### v0.2.0 
 #### 1. Requirements: RC003
 - Tôi muốn theo dõi chuyên cần: nhập số buổi có mặt và số buổi vắng, và xem tỷ lệ chuyên cần của môn.
 
@@ -80,7 +80,7 @@
     - Expected Response: Display "Error: Not valid, retry." and prompt user to re-enter.
 - Out of scope: Automatic exam disqualification warning (in case of absent sessions(a) is exceed the limit of maxmimum absent sessions required by the teacher)
 
-### v0.0.2
+### v0.1.0
 #### 1. Requirements: RC002
 - Tôi muốn ghi nhận học kỳ và lịch học của môn. Một môn có thể học nhiều buổi trong tuần, mỗi buổi có giờ bắt đầu và giờ kết thúc, và giờ kết thúc phải sau giờ bắt đầu. Lịch hiển thị rõ ràng, dễ đọc.
 
@@ -98,7 +98,7 @@
 - Output: Display timetable in formatted 24-hour string (HH:MM). 
 - Edge cases:
     - Input: End time <= Start time (e.g., Start 10:00, End 09:00). 
-    - Expected Response: Display "Error: not valid, pls retry." and ask to re-enter. 
+    - Expected Response: Display "Error: not valid, please retry." and ask to re-enter. 
 - Out of scope: Dynamic conflict checking with other subjects.
 
 ### v0.0.1
