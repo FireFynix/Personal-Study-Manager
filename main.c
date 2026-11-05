@@ -1,51 +1,32 @@
 #include<stdio.h>
 #include<stdbool.h>
 
+int getValidInt(const char* prompt, const char* errorMsg, int min, int max) 
+{
+    int value;
+    bool isInvalid;
+    do 
+    {
+        printf("%s", prompt);
+        scanf("%d", &value);
+        isInvalid = !(value >= min && value <= max);
+        if (isInvalid) 
+        {
+            printf("%s", errorMsg);
+        }
+    } while (isInvalid);
+    return value;
+}
+
 int main()
 {
-    int x;
-    bool isXInvalid;
-    do
-    {
-        printf("Insert the number of credits: ");
-        scanf("%d", &x);
-        isXInvalid = !(x >= 0 && x <= 20);
-        if(isXInvalid)
-        {
-            printf("Credits only from 0 to 20, please retry\n");
-        }
-    } while(isXInvalid);
-   
-    int s;
-    bool isSInvalid;
-    do
-    {
-        printf("Enter semester: ");
-        scanf("%d", &s);
-        isSInvalid = !(s > 0);
-        if(isSInvalid)
-        {
-            printf("Error: not valid, please retry.\n");
-        }
-    } while (isSInvalid);
-
-    int d;
-    bool isDInvalid;
-    do
-    {
-        printf("Enter number of studying days per week (1-3): ");
-        scanf("%d",&d);
-        isDInvalid = !(d >= 1 && d <= 3);
-        if(isDInvalid)
-        {
-            printf("Error: not valid, please retry.\n");
-        }
-    } while (isDInvalid);
+    int x = getValidInt("Insert the number of credits: ", "Credits only from 0 to 20, please retry\n", 0, 20);
+    int s = getValidInt("Enter semester: ", "Error: not valid, please retry.\n", 1, 2147483647);
+    int d = getValidInt("Enter number of studying days per week (1-3): ", "Error: not valid, please retry.\n", 1, 3);
     
     int w_1, h1_1, m1_1, h2_1, m2_1;
     int w_2, h1_2, m1_2, h2_2, m2_2;
     int w_3, h1_3, m1_3, h2_3, m2_3;
-    bool isWInvalid;
     bool isH1H2M1M2Invalid;
     bool isStartHourValid;   
     bool isEndHourValid;     
@@ -54,17 +35,7 @@ int main()
     bool isEndAfterStart;
     if (d >= 1) 
     {
-        do 
-        {
-            printf("Enter weekday for day 1: ");
-            scanf("%d", &w_1);
-            isWInvalid = !(w_1 >= 2 && w_1 <= 8);
-            if (isWInvalid)
-            {
-                printf("Error: not valid, please retry.\n");
-            }
-        } while (isWInvalid);
-
+        w_1 = getValidInt("Enter weekday for day 1: ", "Error: not valid, please retry.\n", 2, 8);
         do 
         {
             printf("Enter start time (h1, m1) and end time (h2, m2): ");
@@ -84,17 +55,7 @@ int main()
 
     if (d >= 2) 
     {
-        do 
-        {
-            printf("Enter weekday for day 2: ");
-            scanf("%d", &w_2);
-            isWInvalid = !(w_2 >= 2 && w_2 <= 8);
-            if (isWInvalid)
-            {
-                printf("Error: not valid, please retry.\n");
-            }
-        } while (isWInvalid);
-
+        w_2 = getValidInt("Enter weekday for day 2: ", "Error: not valid, please retry.\n", 2, 8);
         do 
         {
             printf("Enter start time (h1, m1) and end time (h2, m2): ");
@@ -114,17 +75,7 @@ int main()
 
     if (d == 3) 
     {
-        do 
-        {
-            printf("Enter weekday for day 3: ");
-            scanf("%d", &w_3);
-            isWInvalid = !(w_3 >= 2 && w_3 <= 8);
-            if (isWInvalid)
-            {
-                printf("Error: not valid, please retry.\n");
-            }
-        } while (isWInvalid);
-
+        w_3 = getValidInt("Enter weekday for day 3: ", "Error: not valid, please retry.\n", 2, 8);
         do 
         {
             printf("Enter start time (h1, m1) and end time (h2, m2): ");
