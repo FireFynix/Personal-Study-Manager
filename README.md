@@ -39,6 +39,14 @@
 
 ## 3. Versions
 
+### v0.3.0
+
+#### 1. Requirements: RC003
+- Mọi ô nhập liệu trong chương trình hoạt động theo cùng một cách, không phải viết lại cùng một đoạn kiểm tra ở nhiều nơi.
+
+#### 2. Clarification
+- None
+
 ### v0.2.0 
 #### 1. Requirements: RC003
 - Tôi muốn theo dõi chuyên cần: nhập số buổi có mặt và số buổi vắng, và xem tỷ lệ chuyên cần của môn.
