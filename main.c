@@ -60,6 +60,7 @@ void printWeekday(int w)
 int StartTimeEndTime()
 {
     int h1, m1, h2, m2;
+    int y = h1*100000 + m1*10000 + h2*100 + m2;
     bool isInvalidTime;
     do 
     {
@@ -71,7 +72,7 @@ int StartTimeEndTime()
             printf("Error: not valid, please retry.\n");
         }
     } while (isInvalidTime);
-
+    return y;
 }
 
 int main()
@@ -118,16 +119,13 @@ int main()
     int w_1, h1_1, m1_1, h2_1, m2_1;
     int w_2, h1_2, m1_2, h2_2, m2_2;
     int w_3, h1_3, m1_3, h2_3, m2_3;
-
-
+    int z;
     if (d >= 1) 
     {
         printf("Enter weekday for day 1: ");
         w_1 = getValidWeekday();
 
-        h1_1 = StartTimeEndTime();
-        m1_1 = StartTimeEndTime();
-        
+        z = StartTimeEndTime();        
     }
 
     if (d >= 2)
@@ -135,8 +133,7 @@ int main()
         printf("Enter weekday for day 2: ");
         w_2 = getValidWeekday();
 
-        h1_2 = StartTimeEndTime();
-        m1_2 = StartTimeEndTime();
+        z = StartTimeEndTime();        
     }
 
     if (d == 3) 
@@ -144,8 +141,7 @@ int main()
         printf("Enter weekday for day 3: ");
         w_3 = getValidWeekday();
 
-        h1_2 = StartTimeEndTime();
-        m1_2 = StartTimeEndTime();
+        z = StartTimeEndTime();        
     }
 
     int t, a;
