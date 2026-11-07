@@ -1,7 +1,5 @@
-#include<stdio.h>
-#include<stdbool.h>
-
-int h1, m1, h2, m2;
+#include <stdio.h>
+#include <stdbool.h>
 
 bool isTimeInvalid(int h1, int m1, int h2, int m2) 
 {
@@ -15,35 +13,43 @@ bool isTimeInvalid(int h1, int m1, int h2, int m2)
 
 void printWeekday(int w) 
 {
-    switch(w) 
+    switch (w) 
     {
-        case 2: 
-            printf("Monday"); 
-            break;
-        case 3: 
-            printf("Tuesday"); 
-            break;
-        case 4: 
-            printf("Wednesday"); 
-            break;
-        case 5: 
-            printf("Thursday"); 
-            break;
-        case 6: 
-            printf("Friday"); 
-            break;
-        case 7: 
-            printf("Saturday"); 
-            break;
-        case 8: 
-            printf("Sunday"); 
-            break;
-        default: 
-            break;
+        case 2: printf("Monday"); break;
+        case 3: printf("Tuesday"); break;
+        case 4: printf("Wednesday"); break;
+        case 5: printf("Thursday"); break;
+        case 6: printf("Friday"); break;
+        case 7: printf("Saturday"); break;
+        case 8: printf("Sunday"); break;
+        default: break;
     }
 }
 
-int ExactSchedule(int weekday) 
+int readValidInput(int min, int max, int isCredit)
+{
+    int val;
+    bool isInvalid;
+    do 
+    {
+        scanf("%d", &val);
+        isInvalid = !(val >= min && val <= max);
+        if (isInvalid) 
+        {
+            if (isCredit == 1) 
+            {
+                printf("Credits only from 0 to 20, please retry\n");
+            } 
+            else 
+            {
+                printf("Error: not valid, please retry.\n");
+            }
+        }
+    } while (isInvalid);
+    return val;
+}
+
+int readExactSchedule(int weekday)
 {
     int w, h1, m1, h2, m2;
     bool isWInvalid, isInvalidTime;
@@ -73,89 +79,44 @@ int ExactSchedule(int weekday)
     return w * 100000000 + h1 * 1000000 + m1 * 10000 + h2 * 100 + m2;
 }
 
-void DecodedSchedule(int eT) 
+void printDecodedSchedule(int eT)
 {
     int m2 = eT % 100;
     int h2 = (eT / 100) % 100;
     int m1 = (eT / 10000) % 100;
     int h1 = (eT / 1000000) % 100;
-    int w = eT / 100000000;
-    
+    int w  = eT / 100000000;
+
     printWeekday(w);
     printf(" %02d:%02d - %02d:%02d", h1, m1, h2, m2);
 }
 
-void StartTimeEndTime()
-{
-    bool isInvalidTime;
-    do 
-    {
-        printf("Enter start time (h1, m1) and end time (h2, m2): ");
-        scanf("%d %d %d %d", &h1, &m1, &h2, &m2);
-        isInvalidTime = isTimeInvalid(h1, m1, h2, m2);
-        if (isInvalidTime) 
-        {
-            printf("Error: not valid, please retry.\n");
-        }
-    } while (isInvalidTime);
-
-}
-
 int main()
 {
-    int x;
-    bool isXInvalid;
-    do
-    {
-        printf("Insert the number of credits: ");
-        scanf("%d", &x);
-        isXInvalid = !(x >= 0 && x <= 20);
-        if(isXInvalid)
-        {
-            printf("Credits only from 0 to 20, please retry\n");
-        }
-    } while(isXInvalid);
+    
+    printf("Insert the number of credits: ");
+    int x = readValidInput(0, 20, 1);
 
-    int s;
-    bool isSInvalid;
-    do
-    {
-        printf("Enter semester: ");
-        scanf("%d", &s);
-        isSInvalid = !(s > 0);
-        if(isSInvalid)
-        {
-            printf("Error: not valid, please retry.\n");
-        }
-    } while (isSInvalid);
+    printf("Enter semester: ");
+    int s = readValidInput(1, 2147483647, 0);
 
-    int d;
-    bool isDInvalid;
-    do
-    {
-        printf("Enter number of studying days per week (1-3): ");
-        scanf("%d", &d);
-        isDInvalid = !(d >= 1 && d <= 3);
-        if(isDInvalid)
-        {
-            printf("Error: not valid, please retry.\n");
-        }
-    } while (isDInvalid);
+    printf("Enter number of studying days per week (1-3): ");
+    int d = readValidInput(1, 3, 0);
 
     int eT_1 = 0, eT_2 = 0, eT_3 = 0;
-    
+
     if (d >= 1) 
     {
-        eT_1 = ExactSchedule(1);
-    }    
+        eT_1 = readExactSchedule(1);
+    }
     if (d >= 2) 
     {
-        eT_2 = ExactSchedule(2);
-    }    
+        eT_2 = readExactSchedule(2);
+    }
     if (d == 3) 
     {
-        eT_3 = ExactSchedule(3);
-    }    
+        eT_3 = readExactSchedule(3);
+    }
 
     int t, a;
     bool isTAInvalid;
@@ -185,24 +146,25 @@ int main()
     printf("Your subject's credits currently: %d\n", x);
     printf("Current semester: %d\n", s);
     printf("Number of studying days per week: %d\n", d);
-    printf("Schedule: "); 
+    printf("Schedule: ");
 
     if (d >= 1) 
     {
-        DecodedSchedule(eT_1);
+        printDecodedSchedule(eT_1);
     }
     if (d >= 2) 
     {
         printf(", ");
-        DecodedSchedule(eT_2);
+        printDecodedSchedule(eT_2);
     }
     if (d == 3) 
     {
         printf(", ");
-        DecodedSchedule(eT_3);
+        printDecodedSchedule(eT_3);
     }
 
-    printf("\n");    
+    printf("\n");
     printf("Total sessions: %d, Absent sessions: %d | Non - Attendance Rate: %.2f%%\n", t, a, r);
+
     return 0;
 }
