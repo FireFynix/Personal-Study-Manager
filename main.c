@@ -43,24 +43,13 @@ void printWeekday(int w)
     }
 }
 
-void DecodedSchedule(int eT) 
-{
-    int m2 = eT % 100;
-    int h2 = (eT / 100) % 100;
-    int m1 = (eT / 10000) % 100;
-    int h1 = (eT / 1000000) % 100;
-    int w = eT / 100000000;
-    
-    printWeekday(w);
-    printf(" %02d:%02d - %02d:%02d", h1, m1, h2, m2);
-}
-
 int ExactSchedule(int weekday) 
 {
     int w, h1, m1, h2, m2;
     bool isWInvalid, isInvalidTime;
 
-    do {
+    do 
+    {
         printf("Enter weekday for day %d: ", weekday);
         scanf("%d", &w);
         isWInvalid = !(w >= 2 && w <= 8);
@@ -70,7 +59,8 @@ int ExactSchedule(int weekday)
         }
     } while (isWInvalid);
 
-    do {
+    do 
+    {
         printf("Enter start time (h1, m1) and end time (h2, m2): ");
         scanf("%d %d %d %d", &h1, &m1, &h2, &m2);
         isInvalidTime = isTimeInvalid(h1, m1, h2, m2);
@@ -81,6 +71,18 @@ int ExactSchedule(int weekday)
     } while (isInvalidTime);
 
     return w * 100000000 + h1 * 1000000 + m1 * 10000 + h2 * 100 + m2;
+}
+
+void DecodedSchedule(int eT) 
+{
+    int m2 = eT % 100;
+    int h2 = (eT / 100) % 100;
+    int m1 = (eT / 10000) % 100;
+    int h1 = (eT / 1000000) % 100;
+    int w = eT / 100000000;
+    
+    printWeekday(w);
+    printf(" %02d:%02d - %02d:%02d", h1, m1, h2, m2);
 }
 
 void StartTimeEndTime()
@@ -185,6 +187,20 @@ int main()
     printf("Number of studying days per week: %d\n", d);
     printf("Schedule: "); 
 
+    if (d >= 1) 
+    {
+        DecodedSchedule(eT_1);
+    }
+    if (d >= 2) 
+    {
+        printf(", ");
+        DecodedSchedule(eT_2);
+    }
+    if (d == 3) 
+    {
+        printf(", ");
+        DecodedSchedule(eT_3);
+    }
 
     printf("\n");    
     printf("Total sessions: %d, Absent sessions: %d | Non - Attendance Rate: %.2f%%\n", t, a, r);
