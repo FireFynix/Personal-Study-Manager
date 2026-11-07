@@ -43,6 +43,18 @@ void printWeekday(int w)
     }
 }
 
+void DecodedSchedule(int eT) 
+{
+    int m2 = eT % 100;
+    int h2 = (eT / 100) % 100;
+    int m1 = (eT / 10000) % 100;
+    int h1 = (eT / 1000000) % 100;
+    int w = eT / 100000000;
+    
+    printWeekday(w);
+    printf(" %02d:%02d - %02d:%02d", h1, m1, h2, m2);
+}
+
 int ExactSchedule(int weekday) 
 {
     int w, h1, m1, h2, m2;
@@ -130,6 +142,19 @@ int main()
 
     int eT_1 = 0, eT_2 = 0, eT_3 = 0;
     
+    if (d >= 1) 
+    {
+        eT_1 = ExactSchedule(1);
+    }    
+    if (d >= 2) 
+    {
+        eT_2 = ExactSchedule(2);
+    }    
+    if (d == 3) 
+    {
+        eT_3 = ExactSchedule(3);
+    }    
+
     int t, a;
     bool isTAInvalid;
     do 
@@ -159,6 +184,7 @@ int main()
     printf("Current semester: %d\n", s);
     printf("Number of studying days per week: %d\n", d);
     printf("Schedule: "); 
+
 
     printf("\n");    
     printf("Total sessions: %d, Absent sessions: %d | Non - Attendance Rate: %.2f%%\n", t, a, r);
