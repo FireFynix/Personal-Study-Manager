@@ -1,21 +1,7 @@
 #include<stdio.h>
 #include<stdbool.h>
 
-int getValidWeekday() 
-{
-    int w;
-    bool isInvalid;
-    do 
-    {
-        scanf("%d", &w);
-        isInvalid = !(w >= 2 && w <= 8);
-        if (isInvalid) 
-        {
-            printf("Error: not valid, please retry.\n");
-        }
-    } while (isInvalid);
-    return w;
-}
+int h1, m1, h2, m2;
 
 bool isTimeInvalid(int h1, int m1, int h2, int m2) 
 {
@@ -57,10 +43,36 @@ void printWeekday(int w)
     }
 }
 
-int StartTimeEndTime()
+int ExactSchedule(int weekday) 
 {
-    int h1, m1, h2, m2;
-    int y = h1*100000 + m1*10000 + h2*100 + m2;
+    int w, h1, m1, h2, m2;
+    bool isWInvalid, isInvalidTime;
+
+    do {
+        printf("Enter weekday for day %d: ", weekday);
+        scanf("%d", &w);
+        isWInvalid = !(w >= 2 && w <= 8);
+        if (isWInvalid) 
+        {
+            printf("Error: not valid, please retry.\n");
+        }
+    } while (isWInvalid);
+
+    do {
+        printf("Enter start time (h1, m1) and end time (h2, m2): ");
+        scanf("%d %d %d %d", &h1, &m1, &h2, &m2);
+        isInvalidTime = isTimeInvalid(h1, m1, h2, m2);
+        if (isInvalidTime) 
+        {
+            printf("Error: not valid, please retry.\n");
+        }
+    } while (isInvalidTime);
+
+    return w * 100000000 + h1 * 1000000 + m1 * 10000 + h2 * 100 + m2;
+}
+
+void StartTimeEndTime()
+{
     bool isInvalidTime;
     do 
     {
@@ -72,7 +84,7 @@ int StartTimeEndTime()
             printf("Error: not valid, please retry.\n");
         }
     } while (isInvalidTime);
-    return y;
+
 }
 
 int main()
@@ -116,34 +128,8 @@ int main()
         }
     } while (isDInvalid);
 
-    int w_1, h1_1, m1_1, h2_1, m2_1;
-    int w_2, h1_2, m1_2, h2_2, m2_2;
-    int w_3, h1_3, m1_3, h2_3, m2_3;
-    int z;
-    if (d >= 1) 
-    {
-        printf("Enter weekday for day 1: ");
-        w_1 = getValidWeekday();
-
-        z = StartTimeEndTime();        
-    }
-
-    if (d >= 2)
-    {
-        printf("Enter weekday for day 2: ");
-        w_2 = getValidWeekday();
-
-        z = StartTimeEndTime();        
-    }
-
-    if (d == 3) 
-    {
-        printf("Enter weekday for day 3: ");
-        w_3 = getValidWeekday();
-
-        z = StartTimeEndTime();        
-    }
-
+    int eT_1 = 0, eT_2 = 0, eT_3 = 0;
+    
     int t, a;
     bool isTAInvalid;
     do 
@@ -173,26 +159,6 @@ int main()
     printf("Current semester: %d\n", s);
     printf("Number of studying days per week: %d\n", d);
     printf("Schedule: "); 
-
-    if (d >= 1)
-    {
-        printWeekday(w_1);
-        printf(" %02d:%02d - %02d:%02d", h1_1, m1_1, h2_1, m2_1);
-    }
-
-    if (d >= 2)
-    {
-        printf(", ");
-        printWeekday(w_2);
-        printf(" %02d:%02d - %02d:%02d", h1_2, m1_2, h2_2, m2_2);
-    }
-
-    if (d == 3)
-    {
-        printf(", ");
-        printWeekday(w_3);
-        printf(" %02d:%02d - %02d:%02d", h1_3, m1_3, h2_3, m2_3);
-    }
 
     printf("\n");    
     printf("Total sessions: %d, Absent sessions: %d | Non - Attendance Rate: %.2f%%\n", t, a, r);
