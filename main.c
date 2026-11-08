@@ -96,6 +96,25 @@ int readValidInput(int min, int max, int promptId)
     return val;
 }
 
+int readAttendance()
+{
+    int t, a;
+    bool isTAInvalid;
+    do
+    {
+        t = readValidInput(0, 30, 7);
+        a = readValidInput(0, 30, 8);
+        
+        isTAInvalid = !(t - a >= 0);
+        if (isTAInvalid)
+        {
+            printf("Error: Not valid, retry.\n");
+        }
+    } while (isTAInvalid);
+    
+    return t * 100 + a;
+}
+
 int readExactSchedule(int weekday)
 {
     int promptId = (weekday == 1) ? 4 : ((weekday == 2) ? 5 : 6);
@@ -151,19 +170,9 @@ int main()
         eT_3 = readExactSchedule(3);
     }
 
-    int t, a;
-    bool isTAInvalid;
-    do 
-    {
-        t = readValidInput(0, 30, 7);
-        a = readValidInput(0, 30, 8);
-        
-        isTAInvalid = !(t - a >= 0);
-        if (isTAInvalid)
-        {
-            printf("Error: Not valid, retry.\n");
-        }
-    } while (isTAInvalid);
+    int AttendanceData = readAttendance();
+    int t = AttendanceData / 100;
+    int a = AttendanceData % 100;
 
     float r;
     if (t == 0) 
