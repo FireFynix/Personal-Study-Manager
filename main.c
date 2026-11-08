@@ -26,17 +26,44 @@ void printWeekday(int w)
     }
 }
 
-int readValidInput(int min, int max, int isCredit)
+int readValidInput(int min, int max, int promptId)
 {
     int val;
     bool isInvalid;
     do 
     {
+        switch (promptId) 
+        {
+            case 1: 
+                printf("Insert the number of credits: "); 
+                break;
+            case 2: 
+                printf("Enter semester: "); 
+                break;
+            case 3: 
+                printf("Enter number of studying days per week (1-3): "); 
+                break;
+            case 4: 
+                printf("Enter weekday for day 1: "); 
+                break;
+            case 5: 
+                printf("Enter weekday for day 2: "); 
+                break;
+            case 6: 
+                printf("Enter weekday for day 3: "); 
+                break;
+            case 7: 
+                printf("Enter total sessions: "); 
+                break;
+            case 8: 
+                printf("Enter absent sessions: "); 
+                break;
+        }
         scanf("%d", &val);
         isInvalid = !(val >= min && val <= max);
         if (isInvalid) 
         {
-            if (isCredit == 1) 
+            if (promptId == 1) 
             {
                 printf("Credits only from 0 to 20, please retry\n");
             } 
@@ -51,19 +78,11 @@ int readValidInput(int min, int max, int isCredit)
 
 int readExactSchedule(int weekday)
 {
-    int w, h1, m1, h2, m2;
-    bool isWInvalid, isInvalidTime;
+    int promptId = (weekday == 1) ? 4 : ((weekday == 2) ? 5 : 6);
+    int w = readValidInput(2, 8, promptId);
 
-    do 
-    {
-        printf("Enter weekday for day %d: ", weekday);
-        scanf("%d", &w);
-        isWInvalid = !(w >= 2 && w <= 8);
-        if (isWInvalid) 
-        {
-            printf("Error: not valid, please retry.\n");
-        }
-    } while (isWInvalid);
+    int h1, m1, h2, m2;
+    bool isInvalidTime;
 
     do 
     {
@@ -122,12 +141,11 @@ int main()
     bool isTAInvalid;
     do 
     {
-        printf("Enter total sessions: ");
-        scanf("%d", &t);
-        printf("Enter absent sessions: ");
-        scanf("%d", &a);
-        isTAInvalid = !((t >= 0 && t <= 30) && (a >= 0 && a <= 30) && (t - a >= 0));
-        if (isTAInvalid) 
+        t = readValidInput(0, 30, 7);
+        a = readValidInput(0, 30, 8);
+        
+        isTAInvalid = !(t - a >= 0);
+        if (isTAInvalid)
         {
             printf("Error: Not valid, retry.\n");
         }
