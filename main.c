@@ -41,7 +41,7 @@ void printWeekday(int w)
     }
 }
 
-int readValidInput(int min, int max, int promptId)
+int readValidInput(int min, int max, int promptId, int LimitValue)
 {
     int val;
     bool isInvalid;
@@ -77,6 +77,14 @@ int readValidInput(int min, int max, int promptId)
         scanf("%d", &val);
         isInvalid = !(val >= min && val <= max);
 
+        if (!isInvalid && promptId == 8 && LimitValue != -1)
+        {
+            if (val > LimitValue)
+            {
+                isInvalid = true;
+            }
+        }
+
         if (isInvalid)
         {
             if (promptId == 1)
@@ -96,29 +104,10 @@ int readValidInput(int min, int max, int promptId)
     return val;
 }
 
-int readAttendance()
-{
-    int t, a;
-    bool isTAInvalid;
-    do
-    {
-        t = readValidInput(0, 30, 7);
-        a = readValidInput(0, 30, 8);
-        
-        isTAInvalid = !(t - a >= 0);
-        if (isTAInvalid)
-        {
-            printf("Error: Not valid, retry.\n");
-        }
-    } while (isTAInvalid);
-    
-    return t * 100 + a;
-}
-
 int readExactSchedule(int weekday)
 {
     int promptId = (weekday == 1) ? 4 : ((weekday == 2) ? 5 : 6);
-    int w = readValidInput(2, 8, promptId);
+    int w = readValidInput(2, 8, promptId, -1);
 
     int h1, m1, h2, m2;
     bool isInvalidTime;
@@ -151,9 +140,9 @@ void printDecodedSchedule(int eT)
 
 int main()
 {
-    int x = readValidInput(0, 20, 1);
-    int s = readValidInput(1, 2147483647, 2);
-    int d = readValidInput(1, 3, 3);    
+    int x = readValidInput(0, 20, 1, -1);
+    int s = readValidInput(1, 2147483647, 2, -1);
+    int d = readValidInput(1, 3, 3, -1);    
 
     int eT_1 = 0, eT_2 = 0, eT_3 = 0;
 
@@ -170,9 +159,8 @@ int main()
         eT_3 = readExactSchedule(3);
     }
 
-    int AttendanceData = readAttendance();
-    int t = AttendanceData / 100;
-    int a = AttendanceData % 100;
+    int t = readValidInput(0, 30, 7, -1);
+    int a = readValidInput(0, 30, 8, t);
 
     float r;
     if (t == 0) 
