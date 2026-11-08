@@ -15,14 +15,29 @@ void printWeekday(int w)
 {
     switch (w) 
     {
-        case 2: printf("Monday"); break;
-        case 3: printf("Tuesday"); break;
-        case 4: printf("Wednesday"); break;
-        case 5: printf("Thursday"); break;
-        case 6: printf("Friday"); break;
-        case 7: printf("Saturday"); break;
-        case 8: printf("Sunday"); break;
-        default: break;
+        case 2: 
+            printf("Monday"); 
+            break;
+        case 3: 
+            printf("Tuesday"); 
+            break;
+        case 4: 
+            printf("Wednesday"); 
+            break;
+        case 5: 
+            printf("Thursday"); 
+            break;
+        case 6: 
+            printf("Friday"); 
+            break;
+        case 7: 
+            printf("Saturday"); 
+            break;
+        case 8: 
+            printf("Sunday"); 
+            break;
+        default: 
+            break;
     }
 }
 
@@ -61,13 +76,18 @@ int readValidInput(int min, int max, int promptId)
         }
         scanf("%d", &val);
         isInvalid = !(val >= min && val <= max);
-        if (isInvalid) 
+
+        if (isInvalid)
         {
-            if (promptId == 1) 
+            if (promptId == 1)
             {
                 printf("Credits only from 0 to 20, please retry\n");
-            } 
-            else 
+            }
+            else if (promptId == 7 || promptId == 8)
+            {
+                printf("Error: Not valid, retry.\n");
+            }
+            else
             {
                 printf("Error: not valid, please retry.\n");
             }
@@ -112,15 +132,9 @@ void printDecodedSchedule(int eT)
 
 int main()
 {
-    
-    printf("Insert the number of credits: ");
     int x = readValidInput(0, 20, 1);
-
-    printf("Enter semester: ");
-    int s = readValidInput(1, 2147483647, 0);
-
-    printf("Enter number of studying days per week (1-3): ");
-    int d = readValidInput(1, 3, 0);
+    int s = readValidInput(1, 2147483647, 2);
+    int d = readValidInput(1, 3, 3);    
 
     int eT_1 = 0, eT_2 = 0, eT_3 = 0;
 
