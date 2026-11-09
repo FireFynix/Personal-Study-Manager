@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 
 int main()
 {
@@ -210,10 +211,41 @@ int main()
                 break;
         }
 
-        if (h1_1 < 10) std::cout << " 0" << h1_1 << ":"; else std::cout << " " << h1_1 << ":";
-        if (m1_1 < 10) std::cout << "0" << m1_1 << " - "; else std::cout << m1_1 << " - ";
-        if (h2_1 < 10) std::cout << "0" << h2_1 << ":"; else std::cout << h2_1 << ":";
-        if (m2_1 < 10) std::cout << "0" << m2_1; else std::cout << m2_1;
+        if (h1_1 < 10) 
+        {
+            std::cout << " 0" << h1_1 << ":"; 
+        }
+        else 
+        {
+            std::cout << " " << h1_1 << ":";
+        }
+        
+        if (m1_1 < 10) 
+        {
+            std::cout << "0" << m1_1 << " - ";
+        } 
+        else 
+        {
+            std::cout << m1_1 << " - ";
+        }
+
+        if (h2_1 < 10) 
+        {
+            std::cout << "0" << h2_1 << ":"; 
+        }
+        else
+        {
+            std::cout << h2_1 << ":";
+        }
+        
+        if (m2_1 < 10) 
+        {
+            std::cout << "0" << m2_1; 
+        }
+        else 
+        {
+            std::cout << m2_1;
+        }
     }
 
     if (d >= 2)
@@ -246,10 +278,41 @@ int main()
                 break;
         }
 
-        if (h1_2 < 10) std::cout << " 0" << h1_2 << ":"; else std::cout << " " << h1_2 << ":";
-        if (m1_2 < 10) std::cout << "0" << m1_2 << " - "; else std::cout << m1_2 << " - ";
-        if (h2_2 < 10) std::cout << "0" << h2_2 << ":"; else std::cout << h2_2 << ":";
-        if (m2_2 < 10) std::cout << "0" << m2_2; else std::cout << m2_2;
+        if (h1_2 < 10)
+        { 
+            std::cout << " 0" << h1_2 << ":"; 
+        }
+        else 
+        {
+            std::cout << " " << h1_2 << ":";
+        }
+
+        if (m1_2 < 10)
+        { 
+            std::cout << "0" << m1_2 << " - "; 
+        }
+        else 
+        {
+            std::cout << m1_2 << " - ";
+        }
+
+        if (h2_2 < 10)
+        { 
+        std::cout << "0" << h2_2 << ":"; 
+        }
+        else 
+        {
+            std::cout << h2_2 << ":";
+        }
+
+        if (m2_2 < 10) 
+        {
+            std::cout << "0" << m2_2;
+        } 
+        else 
+        {
+            std::cout << m2_2;
+        }
     }
 
     if (d == 3)
@@ -282,21 +345,48 @@ int main()
                 break;
         }
         
-        if (h1_3 < 10) std::cout << " 0" << h1_3 << ":"; else std::cout << " " << h1_3 << ":";
-        if (m1_3 < 10) std::cout << "0" << m1_3 << " - "; else std::cout << m1_3 << " - ";
-        if (h2_3 < 10) std::cout << "0" << h2_3 << ":"; else std::cout << h2_3 << ":";
-        if (m2_3 < 10) std::cout << "0" << m2_3; else std::cout << m2_3;
+        if (h1_3 < 10) 
+        {
+            std::cout << " 0" << h1_3 << ":";
+        } 
+        else 
+        { 
+            std::cout << " " << h1_3 << ":";
+        }
+
+        if (m1_3 < 10) 
+        {
+            std::cout << "0" << m1_3 << " - ";
+        } 
+        else 
+        {
+            std::cout << m1_3 << " - ";
+        }
+
+        if (h2_3 < 10) 
+        {
+            std::cout << "0" << h2_3 << ":";
+        }
+        else 
+        {
+            std::cout << h2_3 << ":";
+        }
+
+        if (m2_3 < 10) 
+        {
+            std::cout << "0" << m2_3;
+        } 
+        else 
+        {
+            std::cout << m2_3;
+        }
     }
 
     std::cout << "\n";
     
     std::cout << "Total sessions: " << t << ", Absent sessions: " << a << " | Non - Attendance Rate: ";
     
-    int PhanNguyen = (int)r;
-    int PhanThapPhan = (int)((r - PhanNguyen) * 100);
-    std::cout << PhanNguyen << ".";
-    if (PhanThapPhan < 10) std::cout << "0";
-    std::cout << PhanThapPhan << "%\n";
+    std::cout << std::fixed << std::setprecision(2) << r << "%" << std::endl;
 
     return 0;
 }
