@@ -122,7 +122,7 @@
     - Prompt user: Insert numbers of credits
     - After insert, display numbers of credits
 #### 4. Implementation
-- [main.cpp](main.cpp)
+- [main.cpp](main.cpp) 
 #### 5. Testing 
 | Scenario | Input | Output |
 | :--- | :--- | :--- |

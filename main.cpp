@@ -385,7 +385,6 @@ int main()
     std::cout << "\n";
     
     std::cout << "Total sessions: " << t << ", Absent sessions: " << a << " | Non - Attendance Rate: ";
-    
     std::cout << std::fixed << std::setprecision(2) << r << "%" << std::endl;
 
     return 0;
