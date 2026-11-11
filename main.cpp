@@ -182,6 +182,8 @@ int main()
     std::cout << "Number of studying days per week: " << d << "\n";
     std::cout << "Schedule: ";
 
+    std::cout << std::setfill('0');
+
     if (d >= 1) 
     {
         switch (w_1) 
@@ -210,42 +212,11 @@ int main()
             default: 
                 break;
         }
-
-        if (h1_1 < 10) 
-        {
-            std::cout << " 0" << h1_1 << ":";
-        } 
-        else 
-        {
-            std::cout << " " << h1_1 << ":";
-        }
-
-        if (m1_1 < 10) 
-        {
-            std::cout << "0" << m1_1 << " - ";
-        } 
-        else 
-        {
-            std::cout << m1_1 << " - ";
-        }
-
-        if (h2_1 < 10) 
-        {
-            std::cout << "0" << h2_1 << ":";
-        } 
-        else 
-        {
-            std::cout << h2_1 << ":";
-        }
-
-        if (m2_1 < 10) 
-        {
-            std::cout << "0" << m2_1;
-        } 
-        else 
-        {
-            std::cout << m2_1;
-        }
+        
+        std::cout << " " << std::setw(2) << h1_1 << ":" 
+                  << std::setw(2) << m1_1 << " - " 
+                  << std::setw(2) << h2_1 << ":" 
+                  << std::setw(2) << m2_1;
     }
 
     if (d >= 2) 
@@ -278,41 +249,10 @@ int main()
                 break;
         }
 
-        if (h1_2 < 10) 
-        {
-            std::cout << " 0" << h1_2 << ":";
-        } 
-        else 
-        {
-            std::cout << " " << h1_2 << ":";
-        }
-
-        if (m1_2 < 10) 
-        {
-            std::cout << "0" << m1_2 << " - ";
-        } 
-        else 
-        {
-            std::cout << m1_2 << " - ";
-        }
-
-        if (h2_2 < 10) 
-        {
-            std::cout << "0" << h2_2 << ":";
-        } 
-        else 
-        {
-            std::cout << h2_2 << ":";
-        }
-
-        if (m2_2 < 10) 
-        {
-            std::cout << "0" << m2_2;
-        } 
-        else 
-        {
-            std::cout << m2_2;
-        }
+        std::cout << " " << std::setw(2) << h1_2 << ":" 
+                  << std::setw(2) << m1_2 << " - " 
+                  << std::setw(2) << h2_2 << ":" 
+                  << std::setw(2) << m2_2;
     }
 
     if (d == 3) 
@@ -345,41 +285,10 @@ int main()
                 break;
         }
 
-        if (h1_3 < 10) 
-        {
-            std::cout << " 0" << h1_3 << ":";
-        } 
-        else 
-        {
-            std::cout << " " << h1_3 << ":";
-        }
-
-        if (m1_3 < 10) 
-        {
-            std::cout << "0" << m1_3 << " - ";
-        } 
-        else 
-        {
-            std::cout << m1_3 << " - ";
-        }
-
-        if (h2_3 < 10) 
-        {
-            std::cout << "0" << h2_3 << ":";
-        } 
-        else 
-        {
-            std::cout << h2_3 << ":";
-        }
-
-        if (m2_3 < 10) 
-        {
-            std::cout << "0" << m2_3;
-        } 
-        else 
-        {
-            std::cout << m2_3;
-        }
+        std::cout << " " << std::setw(2) << h1_3 << ":" 
+                  << std::setw(2) << m1_3 << " - " 
+                  << std::setw(2) << h2_3 << ":" 
+                  << std::setw(2) << m2_3;
     }
 
     std::cout << "\n";
