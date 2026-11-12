@@ -41,6 +41,20 @@ void printWeekday(int w)
     }
 }
 
+bool IsSessionInvalid(int t, int a)
+{
+    return !((t >= 0 && t <= 30) && (a >= 0 && a <= 30) && (t - a >= 0));
+}
+
+float CalculateAbsentRate(int t, int a)
+{
+    if (t == 0)
+    {
+        return 0.0f;
+    }
+    return ((float)a / t) * 100.0f;
+}
+
 int readValidInput(int min, int max, int promptId)
 {
     int val;
@@ -105,7 +119,7 @@ int readAttendance()
         t = readValidInput(0, 30, 7);
         a = readValidInput(0, 30, 8);
         
-        isTAInvalid = !((t >= 0 && t <= 30) && (a >= 0 && a <= 30) && (t - a >= 0));
+        isTAInvalid = IsSessionInvalid(t, a);        
         if (isTAInvalid)
         {
             printf("Error: Not valid, retry.\n");
@@ -174,15 +188,7 @@ int main()
     int t = attendanceData / 100;
     int a = attendanceData % 100;
 
-    float r;
-    if (t == 0) 
-    {
-        r = 0.0;
-    } 
-    else 
-    {
-        r = ((float)a / t) * 100.0;
-    }
+    float r = CalculateAbsentRate(t, a);
 
     printf("Your subject's credits currently: %d\n", x);
     printf("Current semester: %d\n", s);
