@@ -41,7 +41,7 @@ void printWeekday(int w)
     }
 }
 
-bool IsSessionInvalid(int t, int a)
+bool isSessionInvalid(int t, int a)
 {
     return !((t >= 0 && t <= 30) && (a >= 0 && a <= 30) && (t - a >= 0));
 }
@@ -119,7 +119,7 @@ int readAttendance()
         t = readValidInput(0, 30, 7);
         a = readValidInput(0, 30, 8);
         
-        isTAInvalid = IsSessionInvalid(t, a);        
+        isTAInvalid = isSessionInvalid(t, a);        
         if (isTAInvalid)
         {
             printf("Error: Not valid, retry.\n");
