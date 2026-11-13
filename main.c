@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+typedef struct 
+{
+    float sum;
+    float avg;
+} 
+GradeResult;
+
 bool isTimeInvalid(int h1, int m1, int h2, int m2) 
 {
     bool isStartHourValid   = h1 >= 0 && h1 <= 23;
@@ -163,6 +170,63 @@ void printDecodedSchedule(int eT)
     printf(" %02d:%02d - %02d:%02d", h1, m1, h2, m2);
 }
 
+GradeResult calculateGrades(int n, float g_1, float g_2, float g_3, float g_4, float g_5, float g_6, float g_7, float g_8, float g_9, float g_10) 
+{
+    GradeResult res;
+    res.sum = 0.0f;
+    
+    if (n >= 1) 
+    {
+        res.sum += g_1;
+    }
+    if (n >= 2) 
+    {
+        res.sum += g_2;
+    }
+    if (n >= 3) 
+    {
+        res.sum += g_3;
+    }
+    if (n >= 4) 
+    {
+        res.sum += g_4;
+    }
+    if (n >= 5) 
+    {
+        res.sum += g_5;
+    }
+    if (n >= 6) 
+    {
+        res.sum += g_6;
+    }
+    if (n >= 7) 
+    {
+        res.sum += g_7;
+    }
+    if (n >= 8) 
+    {
+        res.sum += g_8;
+    }
+    if (n >= 9) 
+    {
+        res.sum += g_9;
+    }
+    if (n >= 10)
+    { 
+    res.sum += g_10;
+    }
+
+    if (n == 0) 
+    {
+        res.avg = 0.0f;
+    } 
+    else 
+    {
+        res.avg = res.sum / n;
+    }
+    return res;
+}
+
 int main()
 {
     int x = readValidInput(0, 20, 1);
@@ -268,15 +332,7 @@ int main()
         sum += g;
     }
 
-    float avg;
-    if (n == 0)
-    {
-        avg = 0.0;
-    } 
-    else 
-    {
-        avg = sum / n;
-    }
+    GradeResult grades = calculateGrades(n, g_1, g_2, g_3, g_4, g_5, g_6, g_7, g_8, g_9, g_10);
 
     printf("Your subject's credits currently: %d\n", x);
     printf("Current semester: %d\n", s);
@@ -353,6 +409,6 @@ int main()
             printf(", ");
         }
     }
-    printf(" | Sum: %.1f, Avg: %.1f\n", sum, avg);
+    printf(" | Sum: %.1f, Avg: %.1f\n", grades.sum, grades.avg);
     return 0;
 }
