@@ -1,12 +1,60 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-typedef struct 
+float calculateSum(int n, float g_1, float g_2, float g_3, float g_4, float g_5, float g_6, float g_7, float g_8, float g_9, float g_10) 
 {
-    float sum;
-    float avg;
-} 
-GradeResult;
+    float sum = 0.0f;
+    if (n >= 1 && g_1 >= 0) 
+    {
+        sum += g_1;
+    }
+    if (n >= 2 && g_2 >= 0) 
+    {
+        sum += g_2;
+    }
+    if (n >= 3 && g_3 >= 0) 
+    {
+        sum += g_3;
+    }
+    if (n >= 4 && g_4 >= 0) 
+    {
+        sum += g_4;
+    }
+    if (n >= 5 && g_5 >= 0) 
+    {
+        sum += g_5;
+    }
+    if (n >= 6 && g_6 >= 0) 
+    {
+        sum += g_6;
+    }
+    if (n >= 7 && g_7 >= 0) 
+    {
+        sum += g_7;
+    }
+    if (n >= 8 && g_8 >= 0) 
+    {
+        sum += g_8;
+    }
+    if (n >= 9 && g_9 >= 0) 
+    {
+        sum += g_9;
+    }
+    if (n >= 10 && g_10 >= 0) 
+    {
+        sum += g_10;
+    }
+    return sum;
+}
+
+float calculateAvg(int n, float sum) 
+{
+    if (n == 0) 
+    {
+        return 0.0f;
+    }
+    return sum / n;
+}
 
 bool isTimeInvalid(int h1, int m1, int h2, int m2) 
 {
@@ -53,7 +101,7 @@ bool isSessionInvalid(int t, int a)
     return !((t >= 0 && t <= 30) && (a >= 0 && a <= 30) && (t - a >= 0));
 }
 
-float CalculateAbsentRate(int t, int a)
+float calculateAbsentRate(int t, int a)
 {
     if (t == 0)
     {
@@ -81,9 +129,6 @@ int readValidInput(int min, int max, int promptId)
                 break;
             case 4: 
                 printf("Enter weekday for day 1: "); 
-                break;
-            case 5: 
-                printf("Enter weekday for day 2: "); 
                 break;
             case 6: 
                 printf("Enter weekday for day 3: "); 
@@ -170,63 +215,6 @@ void printDecodedSchedule(int eT)
     printf(" %02d:%02d - %02d:%02d", h1, m1, h2, m2);
 }
 
-GradeResult calculateGrades(int n, float g_1, float g_2, float g_3, float g_4, float g_5, float g_6, float g_7, float g_8, float g_9, float g_10) 
-{
-    GradeResult res;
-    res.sum = 0.0f;
-    
-    if (n >= 1) 
-    {
-        res.sum += g_1;
-    }
-    if (n >= 2) 
-    {
-        res.sum += g_2;
-    }
-    if (n >= 3) 
-    {
-        res.sum += g_3;
-    }
-    if (n >= 4) 
-    {
-        res.sum += g_4;
-    }
-    if (n >= 5) 
-    {
-        res.sum += g_5;
-    }
-    if (n >= 6) 
-    {
-        res.sum += g_6;
-    }
-    if (n >= 7) 
-    {
-        res.sum += g_7;
-    }
-    if (n >= 8) 
-    {
-        res.sum += g_8;
-    }
-    if (n >= 9) 
-    {
-        res.sum += g_9;
-    }
-    if (n >= 10)
-    { 
-    res.sum += g_10;
-    }
-
-    if (n == 0) 
-    {
-        res.avg = 0.0f;
-    } 
-    else 
-    {
-        res.avg = res.sum / n;
-    }
-    return res;
-}
-
 int main()
 {
     int x = readValidInput(0, 20, 1);
@@ -252,7 +240,7 @@ int main()
     int t = attendanceData / 100;
     int a = attendanceData % 100;
 
-    float r = CalculateAbsentRate(t, a);
+    float r = calculateAbsentRate(t, a);
 
     int n;
     bool isNInvalid;
@@ -267,7 +255,7 @@ int main()
         }
     } while (isNInvalid);
 
-    float sum = 0.0, g;
+    float g;
     float g_1 = -1, g_2 = -1, g_3 = -1, g_4 = -1, g_5 = -1, g_6 = -1, g_7 = -1, g_8 = -1, g_9 = -1, g_10 = -1;
     bool isGInvalid;
 
@@ -328,12 +316,12 @@ int main()
 
             default:
                break;
-        }   
-        sum += g;
+        }
     }
 
-    GradeResult grades = calculateGrades(n, g_1, g_2, g_3, g_4, g_5, g_6, g_7, g_8, g_9, g_10);
-
+    float finalSum = calculateSum(n, g_1, g_2, g_3, g_4, g_5, g_6, g_7, g_8, g_9, g_10);
+    float finalAvg = calculateAvg(n, finalSum);
+    
     printf("Your subject's credits currently: %d\n", x);
     printf("Current semester: %d\n", s);
     printf("Number of studying days per week: %d\n", d);
@@ -409,6 +397,6 @@ int main()
             printf(", ");
         }
     }
-    printf(" | Sum: %.1f, Avg: %.1f\n", grades.sum, grades.avg);
+    printf(" | Sum: %.1f, Avg: %.1f\n", finalSum, finalAvg);
     return 0;
 }
