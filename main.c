@@ -130,6 +130,9 @@ int readValidInput(int min, int max, int promptId)
             case 4: 
                 printf("Enter weekday for day 1: "); 
                 break;
+            case 5:
+                printf("Enter weekday for day 2: ");
+                break;
             case 6: 
                 printf("Enter weekday for day 3: "); 
                 break;
@@ -315,7 +318,7 @@ int main()
                 break;
 
             default:
-               break;
+                break;
         }
     }
 
@@ -390,7 +393,7 @@ int main()
                 break;
 
             default:
-               break;
+                break;
         }   
         if (i < n) 
         {
