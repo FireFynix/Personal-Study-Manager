@@ -55,6 +55,7 @@
 #### 2. Clarification
 - None
 ### v0.3.0
+
 #### 1. Requirements: RC005
 - Tôi muốn ghi nhận điểm kiểm tra của môn (số bài kiểm tra tùy theo từng môn), và xem từng điểm, tổng điểm, điểm trung bình.
 
