@@ -41,7 +41,7 @@
 
 ### v0.5.0
 
-#### 1. Requirements:RPM003
+#### 1. Requirements: RPM003
 - các phép tính chuyên cần, phép tính điểm môn học và kiểm tra điều kiện giờ học được tách riêng, để dùng lại được cho nhiều môn.
 
 #### 2. Clarification
