@@ -39,10 +39,49 @@
 
 ## 3. Versions
 
+### v0.6.0
+
+#### 1. Requirements: RC006
+- Tôi muốn ghi nhận ngày bắt đầu và ngày kết thúc của môn học. Chương trình chỉ chấp nhận ngày có thật, và ngày kết thúc không được trước ngày bắt đầu.
+
+#### 2. Clarification
+- Focus / Scope:
+  - Record the beginning date and last date of the subject  
+  - Fully demonstrate: DD/MM/YYYY
+- Input:
+  - Beginning Date (d_1) (guaranteed to be integer, range [1; 31])
+  - Beginning Month(m_1) (guaranteed to be integer, range [1; 12])
+  - Beginning Year(y_1) (guaranteed to be integer, range [2026; 2032])
+  - Ending Date (d_2) (guaranteed to be integer, range [1; 31])
+  - Ending Month(m_2) (guaranteed to be integer, range [1; 12])
+  - Ending Year(y_2) (guaranteed to be integer, range [2026; 2032])
+- Output:
+  - Display Beginning time in format of DD/MM/YYYY.
+  - Display Ending time in format of DD/MM/YYYY.
+- Business rules:
+  - d = [1; 31] for January & March & May & July & August & October & December
+  - d = [1; 30] for the remaining 6 months except the 6 above and Febuary
+  - d = [1; 29] for Febuary in Leap year
+  - d = [1; 28] for Febuary in Non - leap year
+  - Beggining time < Ending time
+- Edge cases:
+  - Date exceed the limit:
+    - Input: 1 > d or d > 31 (e.g: d = 34, 38, etc)
+    - Expected Response: Display "Error, not valid, please retry." and ask to re-enter.
+  - Month exceed the limit:
+    - Input: 1 > m or m > 12 (e.g: m = 14, 28, etc)
+    - Expected Response: Display "Error, not valid, please retry." and ask to re-enter.
+  - Year exceed the limit:
+    - Input: 2026 > y or m > 2032 (e.g: m = 1999, 2007, 2048, etc)
+    - Expected Response: Display "Error, not valid, please retry." and ask to re-enter.
+- Out of scope:
+  - Total of studying days in the period
+  - None
+
 ### v0.5.0
 
 #### 1. Requirements: RPM003
-- các phép tính chuyên cần, phép tính điểm môn học và kiểm tra điều kiện giờ học được tách riêng, để dùng lại được cho nhiều môn.
+- Các phép tính chuyên cần, phép tính điểm môn học và kiểm tra điều kiện giờ học được tách riêng, để dùng lại được cho nhiều môn.
 
 #### 2. Clarification
 - None
