@@ -218,6 +218,41 @@ void printDecodedSchedule(int eT)
     printf(" %02d:%02d - %02d:%02d", h1, m1, h2, m2);
 }
 
+bool isDateInvalid(int d, int m, int y) 
+{
+    if (y < 2026 || y > 2032 || m < 1 || m > 12 || d < 1) 
+    {
+        return true;
+    }
+    if (m == 4 || m == 6 || m == 9 || m == 11) 
+    {
+        return d > 30;
+    }
+    if (m == 2) 
+    {
+        bool isLeap = (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
+        return isLeap ? (d > 29) : (d > 28);
+    }
+    return d > 31;
+}
+
+bool isPeriodInvalid(int d1, int m1, int y1, int d2, int m2, int y2) 
+{
+    if (y2 < y1) 
+    {
+        return true;
+    }    
+    if (y2 == y1 && m2 < m1)
+    { 
+        return true;
+    }
+    if (y2 == y1 && m2 == m1 && d2 <= d1) 
+    {
+        return true;
+    }
+    return false;
+}
+
 int main()
 {
     int x = readValidInput(0, 20, 1);
@@ -325,6 +360,28 @@ int main()
     float finalSum = calculateSum(n, g_1, g_2, g_3, g_4, g_5, g_6, g_7, g_8, g_9, g_10);
     float finalAvg = calculateAvg(n, finalSum);
     
+    int d_1, m_1, y_1;
+    int d_2, m_2, y_2;
+    bool isDatePeriodInvalid;
+    
+    do 
+    {
+        printf("Enter beginning date (DD MM YYYY): ");
+        scanf("%d %d %d", &d_1, &m_1, &y_1);
+        
+        printf("Enter ending date (DD MM YYYY): ");
+        scanf("%d %d %d", &d_2, &m_2, &y_2);
+        
+        isDatePeriodInvalid = isDateInvalid(d_1, m_1, y_1) || 
+                              isDateInvalid(d_2, m_2, y_2) || 
+                              isPeriodInvalid(d_1, m_1, y_1, d_2, m_2, y_2);
+        
+        if (isDatePeriodInvalid) 
+        {
+            printf("Error, not valid, please retry.\n");
+        }
+    } while (isDatePeriodInvalid);
+
     printf("Your subject's credits currently: %d\n", x);
     printf("Current semester: %d\n", s);
     printf("Number of studying days per week: %d\n", d);
@@ -401,5 +458,7 @@ int main()
         }
     }
     printf(" | Sum: %.1f, Avg: %.1f\n", finalSum, finalAvg);
+    printf("Beginning time: %02d/%02d/%04d\n", d_1, m_1, y_1);
+    printf("Ending time: %02d/%02d/%04d\n", d_2, m_2, y_2);
     return 0;
 }
