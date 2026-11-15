@@ -218,12 +218,35 @@ void printDecodedSchedule(int eT)
     printf(" %02d:%02d - %02d:%02d", h1, m1, h2, m2);
 }
 
-int readExactDate(int promptId) 
+bool isDateInvalid(int d, int m, int y) {
+    if (y < 2026 || y > 2032 || m < 1 || m > 12 || d < 1) 
+    {
+        return true;
+    }
+    if (m == 4 || m == 6 || m == 9 || m == 11) 
+    {
+        return d > 30;
+    }
+    if (m == 2) 
+    {
+        bool isLeap = (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
+        return isLeap ? (d > 29) : (d > 28);
+    }
+    return d > 31;
+}
+
+bool isPeriodInvalid(int beginDate, int endDate) 
+{
+    return endDate <= beginDate; 
+}
+
+int readExactDate(int promptId, int beginDate) 
 {
     int d, m, y;
-    bool isInvalidDate;
-    do 
-    {
+    int currentDate;
+    bool isInvDate, isInvPeriod;
+    
+    do {
         if (promptId == 1) 
         {
             printf("Enter beginning date (DD MM YYYY): ");
@@ -234,33 +257,25 @@ int readExactDate(int promptId)
         }
         scanf("%d %d %d", &d, &m, &y);
         
-        isInvalidDate = false;
-        if (y < 2026 || y > 2032 || m < 1 || m > 12 || d < 1) 
+        isInvDate = isDateInvalid(d, m, y);
+        currentDate = y * 10000 + m * 100 + d; 
+        
+        if (promptId == 2 && !isInvDate) 
         {
-            isInvalidDate = true;
-        } 
-        else if (m == 4 || m == 6 || m == 9 || m == 11) 
-        {
-            if (d > 30) isInvalidDate = true;
-        } 
-        else if (m == 2) 
-        {
-            bool isLeap = (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
-            if (isLeap && d > 29) isInvalidDate = true;
-            if (!isLeap && d > 28) isInvalidDate = true;
+            isInvPeriod = isPeriodInvalid(beginDate, currentDate);
         } 
         else 
         {
-            if (d > 31) isInvalidDate = true;
+            isInvPeriod = false;
         }
         
-        if (isInvalidDate) 
+        if (isInvDate || isInvPeriod) 
         {
             printf("Error, not valid, please retry.\n");
         }
-    } while (isInvalidDate);
+    } while (isInvDate || isInvPeriod);
     
-    return y * 10000 + m * 100 + d;
+    return currentDate;
 }
 
 void printExactDate(int dateVal) 
@@ -379,20 +394,8 @@ int main()
     float finalSum = calculateSum(n, g_1, g_2, g_3, g_4, g_5, g_6, g_7, g_8, g_9, g_10);
     float finalAvg = calculateAvg(n, finalSum);
     
-    int beginningDate, endingDate;
-    bool isPeriodInvalid;
-    
-    do 
-    {
-        beginningDate = readExactDate(1);
-        endingDate = readExactDate(2);
-        
-        isPeriodInvalid = beginningDate > endingDate;
-        if (isPeriodInvalid) 
-        {
-            printf("Error, not valid, please retry.\n");
-        }
-    } while (isPeriodInvalid);
+    int beginningDate = readExactDate(1, 0);
+    int endingDate = readExactDate(2, beginningDate);
 
     printf("Your subject's credits currently: %d\n", x);
     printf("Current semester: %d\n", s);
