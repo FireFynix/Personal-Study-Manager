@@ -247,7 +247,8 @@ int readExactDate(int promptId)
     int currentDate;
     bool isInvDate;
     
-    do {
+    do 
+    {
         if (promptId == 1) 
         {
             printf("Enter beginning date (DD MM YYYY): ");
@@ -268,6 +269,27 @@ int readExactDate(int promptId)
     } while (isInvDate);
     
     return currentDate;
+}
+
+long long readPeriod() 
+{
+    int beginDate, endDate;
+    bool isPeriodInv;
+    
+    do 
+    {
+        beginDate = readExactDate(1);
+        endDate = readExactDate(2);
+        
+        isPeriodInv = isPeriodInvalid(beginDate, endDate);
+        
+        if (isPeriodInv) 
+        {
+            printf("Error, not valid, please retry.\n");
+        }
+    } while (isPeriodInv);
+    
+    return (long long)beginDate * 100000000 + endDate;
 }
 
 void printExactDate(int dateVal) 
@@ -386,20 +408,10 @@ int main()
     float finalSum = calculateSum(n, g_1, g_2, g_3, g_4, g_5, g_6, g_7, g_8, g_9, g_10);
     float finalAvg = calculateAvg(n, finalSum);
     
-    int beginningDate, endingDate;
-    bool isPeriodInvalidFlag;
-
-    do 
-    {
-        beginningDate = readExactDate(1);
-        endingDate = readExactDate(2);
-        
-        isPeriodInvalidFlag = isPeriodInvalid(beginningDate, endingDate);
-        if (isPeriodInvalidFlag) 
-        {
-            printf("Error, not valid, please retry.\n");
-        }
-    } while (isPeriodInvalidFlag);
+    long long periodData = readPeriod();
+    
+    int beginningDate = periodData / 100000000;
+    int endingDate = periodData % 100000000;
 
     printf("Your subject's credits currently: %d\n", x);
     printf("Current semester: %d\n", s);
