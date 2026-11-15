@@ -60,10 +60,10 @@
   - Display Ending time in format of DD/MM/YYYY.
 - Business rules:
   - d = [1; 31] for January & March & May & July & August & October & December
-  - d = [1; 30] for the remaining 6 months except the 6 above and Febuary
-  - d = [1; 29] for Febuary in Leap year
-  - d = [1; 28] for Febuary in Non - leap year
-  - Beggining time < Ending time
+  - d = [1; 30] for the remaining 6 months except the 6 above and February
+  - d = [1; 29] for February in Leap year
+  - d = [1; 28] for February in Non - leap year
+  - Beginning time < Ending time
 - Edge cases:
   - Date exceed the limit:
     - Input: 1 > d or d > 31 (e.g: d = 34, 38, etc)
@@ -72,7 +72,7 @@
     - Input: 1 > m or m > 12 (e.g: m = 14, 28, etc)
     - Expected Response: Display "Error, not valid, please retry." and ask to re-enter.
   - Year exceed the limit:
-    - Input: 2026 > y or m > 2032 (e.g: m = 1999, 2007, 2048, etc)
+    - Input: 2026 > y or y > 2032 (e.g: y = 1999, 2007, 2048, etc)
     - Expected Response: Display "Error, not valid, please retry." and ask to re-enter.
 - Out of scope:
   - Total of studying days in the period
