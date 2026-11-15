@@ -218,7 +218,8 @@ void printDecodedSchedule(int eT)
     printf(" %02d:%02d - %02d:%02d", h1, m1, h2, m2);
 }
 
-bool isDateInvalid(int d, int m, int y) {
+bool isDateInvalid(int d, int m, int y) 
+{
     if (y < 2026 || y > 2032 || m < 1 || m > 12 || d < 1) 
     {
         return true;
@@ -240,11 +241,11 @@ bool isPeriodInvalid(int beginDate, int endDate)
     return endDate <= beginDate; 
 }
 
-int readExactDate(int promptId, int beginDate) 
+int readExactDate(int promptId) 
 {
     int d, m, y;
     int currentDate;
-    bool isInvDate, isInvPeriod;
+    bool isInvDate;
     
     do {
         if (promptId == 1) 
@@ -258,22 +259,13 @@ int readExactDate(int promptId, int beginDate)
         scanf("%d %d %d", &d, &m, &y);
         
         isInvDate = isDateInvalid(d, m, y);
-        currentDate = y * 10000 + m * 100 + d; 
+        currentDate = y * 10000 + m * 100 + d;
         
-        if (promptId == 2 && !isInvDate) 
-        {
-            isInvPeriod = isPeriodInvalid(beginDate, currentDate);
-        } 
-        else 
-        {
-            isInvPeriod = false;
-        }
-        
-        if (isInvDate || isInvPeriod) 
+        if (isInvDate) 
         {
             printf("Error, not valid, please retry.\n");
         }
-    } while (isInvDate || isInvPeriod);
+    } while (isInvDate);
     
     return currentDate;
 }
@@ -394,8 +386,20 @@ int main()
     float finalSum = calculateSum(n, g_1, g_2, g_3, g_4, g_5, g_6, g_7, g_8, g_9, g_10);
     float finalAvg = calculateAvg(n, finalSum);
     
-    int beginningDate = readExactDate(1, 0);
-    int endingDate = readExactDate(2, beginningDate);
+    int beginningDate, endingDate;
+    bool isPeriodInvalidFlag;
+
+    do 
+    {
+        beginningDate = readExactDate(1);
+        endingDate = readExactDate(2);
+        
+        isPeriodInvalidFlag = isPeriodInvalid(beginningDate, endingDate);
+        if (isPeriodInvalidFlag) 
+        {
+            printf("Error, not valid, please retry.\n");
+        }
+    } while (isPeriodInvalidFlag);
 
     printf("Your subject's credits currently: %d\n", x);
     printf("Current semester: %d\n", s);
