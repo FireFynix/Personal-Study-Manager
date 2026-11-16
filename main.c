@@ -218,6 +218,89 @@ void printDecodedSchedule(int eT)
     printf(" %02d:%02d - %02d:%02d", h1, m1, h2, m2);
 }
 
+bool isDateInvalid(int d, int m, int y) 
+{
+    if (y < 2026 || y > 2032 || m < 1 || m > 12 || d < 1) 
+    {
+        return true;
+    }
+    if (m == 4 || m == 6 || m == 9 || m == 11) 
+    {
+        return (d > 30);
+    }
+    if (m == 2) 
+    {
+        bool isLeap = (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
+        return (isLeap ? (d > 29) : (d > 28));
+    }
+    return (d > 31);
+}
+
+bool isPeriodInvalid(int beginDate, int endDate) 
+{
+    return (endDate <= beginDate); 
+}
+
+int readExactDate(int promptId) 
+{
+    int d, m, y;
+    int currentDate;
+    bool isInvDate;
+    
+    do 
+    {
+        if (promptId == 1) 
+        {
+            printf("Enter beginning date (DD MM YYYY): ");
+        } 
+        else 
+        {
+            printf("Enter ending date (DD MM YYYY): ");
+        }
+        scanf("%d %d %d", &d, &m, &y);
+        
+        isInvDate = isDateInvalid(d, m, y);
+        currentDate = y * 10000 + m * 100 + d;
+        
+        if (isInvDate) 
+        {
+            printf("Error, not valid, please retry.\n");
+        }
+    } while (isInvDate);
+    
+    return currentDate;
+}
+
+long long readPeriod(void) 
+{
+    int beginDate, endDate;
+    bool isPeriodInv;
+    
+    do 
+    {
+        beginDate = readExactDate(1);
+        endDate = readExactDate(2);
+        
+        isPeriodInv = isPeriodInvalid(beginDate, endDate);
+        
+        if (isPeriodInv) 
+        {
+            printf("Error, not valid, please retry.\n");
+        }
+    } while (isPeriodInv);
+    
+    return (((long long) beginDate) * 100000000 + endDate);
+}
+
+void printExactDate(int dateVal) 
+{
+    int y = dateVal / 10000;
+    int m = (dateVal / 100) % 100;
+    int d = dateVal % 100;
+
+    printf("%02d/%02d/%04d\n", d, m, y);
+}
+
 int main(void)
 {
     int x = readValidInput(0, 20, 1);
@@ -325,6 +408,11 @@ int main(void)
     float finalSum = calculateSum(n, g_1, g_2, g_3, g_4, g_5, g_6, g_7, g_8, g_9, g_10);
     float finalAvg = calculateAvg(n, finalSum);
     
+    long long periodData = readPeriod();
+    
+    int beginningDate = periodData / 100000000;
+    int endingDate = periodData % 100000000;
+
     printf("Your subject's credits currently: %d\n", x);
     printf("Current semester: %d\n", s);
     printf("Number of studying days per week: %d\n", d);
@@ -401,5 +489,11 @@ int main(void)
         }
     }
     printf(" | Sum: %.1f, Avg: %.1f\n", finalSum, finalAvg);
+    
+    printf("Beginning time: ");
+    printExactDate(beginningDate);
+    printf("Ending time: ");
+    printExactDate(endingDate);
+
     return 0;
 }
