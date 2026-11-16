@@ -8,7 +8,7 @@ bool isTimeInvalid(int h1, int m1, int h2, int m2)
     bool isStartMinuteValid = m1 >= 0 && m1 <= 59;
     bool isEndMinuteValid   = m2 >= 0 && m2 <= 59;
     bool isEndAfterStart    = (h2 * 60 + m2) > (h1 * 60 + m1);
-    return !(isStartHourValid && isEndHourValid && isStartMinuteValid && isEndMinuteValid && isEndAfterStart);
+    return (!(isStartHourValid && isEndHourValid && isStartMinuteValid && isEndMinuteValid && isEndAfterStart));
 }
 
 void printWeekday(int w) 
@@ -96,7 +96,7 @@ int readValidInput(int min, int max, int promptId)
     return val;
 }
 
-int readAttendance()
+int readAttendance(void)
 {
     int t, a;
     bool isTAInvalid;
@@ -112,7 +112,7 @@ int readAttendance()
         }
     } while (isTAInvalid);
     
-    return t * 100 + a;
+    return (t * 100 + a);
 }
 
 int readExactSchedule(int weekday)
@@ -134,7 +134,7 @@ int readExactSchedule(int weekday)
         }
     } while (isInvalidTime);
 
-    return w * 100000000 + h1 * 1000000 + m1 * 10000 + h2 * 100 + m2;
+    return (w * 100000000 + h1 * 1000000 + m1 * 10000 + h2 * 100 + m2);
 }
 
 void printDecodedSchedule(int eT)
@@ -149,10 +149,10 @@ void printDecodedSchedule(int eT)
     printf(" %02d:%02d - %02d:%02d", h1, m1, h2, m2);
 }
 
-int main()
+int main(void)
 {
     int x = readValidInput(0, 20, 1);
-    int s = readValidInput(1, 2147483647, 2);
+    int s = readValidInput(1, 2147483647, 2); // 2147483647 indicates as the largest number in 'int'
     int d = readValidInput(1, 3, 3);    
 
     int eT_1 = 0, eT_2 = 0, eT_3 = 0;
@@ -181,7 +181,7 @@ int main()
     } 
     else 
     {
-        r = ((float)a / t) * 100.0;
+        r = (((float)a) / t) * 100.0;
     }
 
     int n;
