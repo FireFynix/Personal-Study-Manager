@@ -107,7 +107,7 @@ float calculateAbsentRate(int t, int a)
     {
         return 0.0f;
     }
-    return ((((float)a) / t) * 100.0f);
+    return ((((float) a) / t) * 100.0f);
 }
 
 int readValidInput(int min, int max, int promptId)
