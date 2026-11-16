@@ -53,7 +53,7 @@ float calculateAvg(int n, float sum)
     {
         return 0.0f;
     }
-    return sum / n;
+    return (sum / n);
 }
 
 bool isTimeInvalid(int h1, int m1, int h2, int m2) 
@@ -107,7 +107,7 @@ float calculateAbsentRate(int t, int a)
     {
         return 0.0f;
     }
-    return ((float)a / t) * 100.0f;
+    return ((((float)a) / t) * 100.0f);
 }
 
 int readValidInput(int min, int max, int promptId)
