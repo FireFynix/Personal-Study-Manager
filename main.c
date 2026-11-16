@@ -152,7 +152,7 @@ void printDecodedSchedule(int eT)
 int main(void)
 {
     int x = readValidInput(0, 20, 1);
-    int s = readValidInput(1, 2147483647, 2); // 2147483647 indicates as the largest number in 'int'
+    int s = readValidInput(1, 2147483647, 2); // 2147483647 is the largest value for an 'int', which also means its value is greater than 0.
     int d = readValidInput(1, 3, 3);    
 
     int eT_1 = 0, eT_2 = 0, eT_3 = 0;
@@ -181,7 +181,7 @@ int main(void)
     } 
     else 
     {
-        r = (((float)a) / t) * 100.0;
+        r = (((float) a) / t) * 100.0;
     }
 
     int n;
