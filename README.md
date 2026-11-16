@@ -38,6 +38,13 @@
 * Display list of asigned subjects in semesters
 
 ## 3. Versions
+### v0.4.0
+
+#### 1. Requirements: RPM002
+- Mọi ô nhập liệu trong chương trình hoạt động theo cùng một cách, không phải viết lại cùng một đoạn kiểm tra ở nhiều nơi.
+
+#### 2. Clarification
+- None
 
 ### v0.3.0
 #### 1. Requirements: RC005
@@ -59,6 +66,7 @@
     - Input: Grade g < 0.0 or g > 10.0 (e.g: 11.5 or -2.0) or n < 0 
     - Expected Response: Display ""Error: Entry must be between 0.0 and 10.0."" and prompt re-entry for that test. 
 - Out of scope: Weighted grade calculations (e.g., midterm/final weight percentages).
+
 
 ### v0.2.0 
 #### 1. Requirements: RC003
