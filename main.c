@@ -226,19 +226,19 @@ bool isDateInvalid(int d, int m, int y)
     }
     if (m == 4 || m == 6 || m == 9 || m == 11) 
     {
-        return d > 30;
+        return (d > 30);
     }
     if (m == 2) 
     {
         bool isLeap = (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
-        return isLeap ? (d > 29) : (d > 28);
+        return (isLeap ? (d > 29) : (d > 28));
     }
-    return d > 31;
+    return (d > 31);
 }
 
 bool isPeriodInvalid(int beginDate, int endDate) 
 {
-    return endDate <= beginDate; 
+    return (endDate <= beginDate); 
 }
 
 int readExactDate(int promptId) 
@@ -271,7 +271,7 @@ int readExactDate(int promptId)
     return currentDate;
 }
 
-long long readPeriod() 
+long long readPeriod(void) 
 {
     int beginDate, endDate;
     bool isPeriodInv;
@@ -289,7 +289,7 @@ long long readPeriod()
         }
     } while (isPeriodInv);
     
-    return (long long)beginDate * 100000000 + endDate;
+    return (((long long) beginDate) * 100000000 + endDate);
 }
 
 void printExactDate(int dateVal) 
