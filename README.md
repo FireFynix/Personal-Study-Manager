@@ -38,6 +38,15 @@
 * Display list of asigned subjects in semesters
 
 ## 3. Versions
+
+### v0.5.0
+
+#### 1. Requirements: RPM003
+- các phép tính chuyên cần, phép tính điểm môn học và kiểm tra điều kiện giờ học được tách riêng, để dùng lại được cho nhiều môn.
+
+#### 2. Clarification
+- None
+
 ### v0.4.0
 
 #### 1. Requirements: RPM002
@@ -47,6 +56,7 @@
 - None
 
 ### v0.3.0
+
 #### 1. Requirements: RC005
 - Tôi muốn ghi nhận điểm kiểm tra của môn (số bài kiểm tra tùy theo từng môn), và xem từng điểm, tổng điểm, điểm trung bình.
 
@@ -67,8 +77,8 @@
     - Expected Response: Display ""Error: Entry must be between 0.0 and 10.0."" and prompt re-entry for that test. 
 - Out of scope: Weighted grade calculations (e.g., midterm/final weight percentages).
 
-
 ### v0.2.0 
+
 #### 1. Requirements: RC003
 - Tôi muốn theo dõi chuyên cần: nhập số buổi có mặt và số buổi vắng, và xem tỷ lệ chuyên cần của môn.
 
@@ -89,6 +99,7 @@
 - Out of scope: Automatic exam disqualification warning (in case of absent sessions(a) is exceed the limit of maxmimum absent sessions required by the teacher)
 
 ### v0.1.0
+
 #### 1. Requirements: RC002
 - Tôi muốn ghi nhận học kỳ và lịch học của môn. Một môn có thể học nhiều buổi trong tuần, mỗi buổi có giờ bắt đầu và giờ kết thúc, và giờ kết thúc phải sau giờ bắt đầu. Lịch hiển thị rõ ràng, dễ đọc.
 
