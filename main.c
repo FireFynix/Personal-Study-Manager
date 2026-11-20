@@ -106,6 +106,9 @@ int readValidInput(int min, int max, int promptId)
             case 8: 
                 printf("Enter absent sessions: "); 
                 break;
+            case 9:
+                printf("Enter number of tests: ");
+                break;
         }
         scanf("%d", &val);
         isInvalid = !(val >= min && val <= max);
@@ -119,6 +122,10 @@ int readValidInput(int min, int max, int promptId)
             else if (promptId == 7 || promptId == 8)
             {
                 printf("Error: Not valid, retry.\n");
+            }
+            else if (promptId == 9)
+            {
+                printf("Error: Entry must be between 1 and 10\n");
             }
             else
             {
@@ -235,6 +242,28 @@ int readExactDate(int promptId)
     return currentDate;
 }
 
+void readGrades(int n, float grades[])
+{
+    float g;
+    bool isGInvalid;
+
+    for (int i = 0; i < n; i++)
+    {
+        do
+        {
+            printf("Enter grade for test %d: ", i + 1);
+            scanf("%f", &g);
+            isGInvalid = !(g >= 0.0f && g <= 10.0f);
+            if (isGInvalid)
+            {
+                printf("Error: Entry must be between 0.0 and 10.0\n");
+            }
+        } while (isGInvalid);
+
+        grades[i] = g;
+    }
+}
+
 long long readPeriod(void) 
 {
     int beginDate, endDate;
@@ -292,39 +321,10 @@ int main(void)
 
     float r = calculateAbsentRate(t, a);
 
-    int n;
-    bool isNInvalid;
-    do 
-    {
-        printf("Enter number of tests: ");
-        scanf("%d", &n);
-        isNInvalid = !(n >= 0 && n <= 10);
-        if (isNInvalid) 
-        {
-            printf("Error: Entry must be between 0 and 10\n");
-        }
-    } while (isNInvalid);
-
-    float g;
+    int n = readValidInput(1, 10, 9);
     float grades[10];
-    bool isGInvalid;
-
-    for (int i = 0; i < n; i++)
-    {
-        do
-        {
-            printf("Enter grade for test %d: ", i + 1);
-            scanf("%f", &g);
-            isGInvalid = !(g >= 0.0f && g <= 10.0f);
-            if (isGInvalid)
-            {
-                printf("Error: Entry must be between 0.0 and 10.0\n");
-            }
-        } while (isGInvalid);
-
-        grades[i] = g;
-    }
-
+    readGrades(n, grades);
+    
     float finalSum = calculateSum(n, grades);
     float finalAvg = calculateAvg(n, finalSum);
     
