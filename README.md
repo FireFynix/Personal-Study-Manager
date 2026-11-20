@@ -39,6 +39,32 @@
 
 ## 3. Versions
 
+### v0.8.0
+
+#### 1. Requirements: RPM005
+- Lịch học của môn được lưu, nhập và hiển thị đúng theo số buổi thực tế của môn đó.
+
+#### 2. Clarification
+- Focus / Scope:
+  - Store the subject's schedule (weekday, start time, end time) into 1-dimensional arrays instead of using separate individual variables (e.g., w_1, h1_1).
+  - Accurately input, record, and display the schedule dynamically based on the actual number of studying days (d).
+- Input:
+  - Number of studying days (d) (guaranteed to be integer, range [1; 3])
+  - Array `w` (1D array of integers, size 3) to store Weekdays, range [2; 8]
+  - Arrays `h1`, `m1` (1D arrays of integers, size 3) to store Start hours [0; 23] and minutes [0; 59]
+  - Arrays `h2`, `m2` (1D arrays of integers, size 3) to store End hours [0; 23] and minutes [0; 59]
+- Output:
+  - Display the formatted schedule directly by iterating through the stored elements in the arrays.
+- Business rules:
+  - Store each valid day's schedule data into index `i` of the respective arrays (with `i` from 0 to d-1).
+  - Use a loop to traverse the arrays for inputting data and another loop to display the complete schedule.
+  - End time must be strictly after Start time for each session at index `i` (h2[i] * 60 + m2[i] > h1[i] * 60 + m1[i]).
+- Edge cases:
+  - Array bounds: Ensure the input loops strictly respect the array size limit (d <= 3) to prevent buffer overflow.
+- Out of scope:
+  - Sorting the schedule arrays chronologically by weekday.
+  - 2D array implementation (handling multiple subjects' schedule arrays simultaneously).
+
 ### v0.7.0
 
 #### 1. Requirements: RPM004
