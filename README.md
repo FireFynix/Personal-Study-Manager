@@ -39,6 +39,32 @@
 
 ## 3. Versions
 
+### v0.7.0
+
+#### 1. Requirements: RPM004
+- Điểm của từng bài kiểm tra được lưu đủ, đúng theo số bài của từng môn; tổng điểm và trung bình được tính đúng với số bài đó.
+
+#### 2. Clarification
+- Focus / Scope:
+  - Store all individual test grades into a 1-dimensional array instead of accumulating them directly.
+  - Calculate the total and average scores accurately based on the stored elements in the array.
+- Input:
+  - Number of tests (n) (guaranteed to be integer, range [1; 10])
+  - Test grade (g) (guaranteed to be real, range [0.0; 10.0], precision of 1 digit)
+  - Array `grades` (1D array of real numbers, size 10) to store the valid inputted test grades.
+- Output:
+  - Display the list of recorded grades directly from the `grades` array.
+  - Display Sum (sum) and Average (avg) calculated from the array.
+- Business rules:
+  - Store each valid grade `g` into `grades[i]` (with `i` from 0 to n-1).
+  - Use a loop to traverse the `grades` array to calculate `sum = grades[0] + ... + grades[n-1]`.
+  - avg = sum / n.
+- Edge cases:
+  - Array bounds: Ensure the input loop strictly respects the array size limit (n <= 10) to prevent buffer overflow.
+- Out of scope:
+  - Sorting, modifying, or deleting the grades after they are stored.
+  - 2D array implementation (handling multiple subjects' grades arrays simultaneously).
+  
 ### v0.6.0
 
 #### 1. Requirements: RC006

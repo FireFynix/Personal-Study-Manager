@@ -1,48 +1,12 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-float calculateSum(int n, float g_1, float g_2, float g_3, float g_4, float g_5, float g_6, float g_7, float g_8, float g_9, float g_10) 
+float calculateSum(int n, float grades[])
 {
     float sum = 0.0f;
-    if (n >= 1 && g_1 >= 0) 
+    for (int i = 0; i < n; i++)
     {
-        sum += g_1;
-    }
-    if (n >= 2 && g_2 >= 0) 
-    {
-        sum += g_2;
-    }
-    if (n >= 3 && g_3 >= 0) 
-    {
-        sum += g_3;
-    }
-    if (n >= 4 && g_4 >= 0) 
-    {
-        sum += g_4;
-    }
-    if (n >= 5 && g_5 >= 0) 
-    {
-        sum += g_5;
-    }
-    if (n >= 6 && g_6 >= 0) 
-    {
-        sum += g_6;
-    }
-    if (n >= 7 && g_7 >= 0) 
-    {
-        sum += g_7;
-    }
-    if (n >= 8 && g_8 >= 0) 
-    {
-        sum += g_8;
-    }
-    if (n >= 9 && g_9 >= 0) 
-    {
-        sum += g_9;
-    }
-    if (n >= 10 && g_10 >= 0) 
-    {
-        sum += g_10;
+        sum += grades[i];
     }
     return sum;
 }
@@ -142,6 +106,9 @@ int readValidInput(int min, int max, int promptId)
             case 8: 
                 printf("Enter absent sessions: "); 
                 break;
+            case 9:
+                printf("Enter number of tests: ");
+                break;
         }
         scanf("%d", &val);
         isInvalid = !(val >= min && val <= max);
@@ -155,6 +122,10 @@ int readValidInput(int min, int max, int promptId)
             else if (promptId == 7 || promptId == 8)
             {
                 printf("Error: Not valid, retry.\n");
+            }
+            else if (promptId == 9)
+            {
+                printf("Error: Entry must be between 1 and 10\n");
             }
             else
             {
@@ -271,6 +242,28 @@ int readExactDate(int promptId)
     return currentDate;
 }
 
+void readGrades(int n, float grades[])
+{
+    float g;
+    bool isGInvalid;
+
+    for (int i = 0; i < n; i++)
+    {
+        do
+        {
+            printf("Enter grade for test %d: ", i + 1);
+            scanf("%f", &g);
+            isGInvalid = !(g >= 0.0f && g <= 10.0f);
+            if (isGInvalid)
+            {
+                printf("Error: Entry must be between 0.0 and 10.0\n");
+            }
+        } while (isGInvalid);
+
+        grades[i] = g;
+    }
+}
+
 long long readPeriod(void) 
 {
     int beginDate, endDate;
@@ -328,84 +321,11 @@ int main(void)
 
     float r = calculateAbsentRate(t, a);
 
-    int n;
-    bool isNInvalid;
-    do 
-    {
-        printf("Enter number of tests: ");
-        scanf("%d", &n);
-        isNInvalid = !(n >= 0 && n <= 10);
-        if (isNInvalid) 
-        {
-            printf("Error: Entry must be between 0 and 10\n");
-        }
-    } while (isNInvalid);
-
-    float g;
-    float g_1 = -1, g_2 = -1, g_3 = -1, g_4 = -1, g_5 = -1, g_6 = -1, g_7 = -1, g_8 = -1, g_9 = -1, g_10 = -1;
-    bool isGInvalid;
-
-    for (int i = 1; i <= n; i++) 
-    {
-        do 
-        {
-            printf("Enter grade for test %d: ", i);
-            scanf("%f", &g);
-            isGInvalid = !(g >= 0.0 && g <= 10.0);
-            if (isGInvalid) 
-            {
-                printf("Error: Entry must be between 0.0 and 10.0\n");
-            }
-        } while (isGInvalid);
-        
-        switch (i)
-        {
-            case 1:
-                g_1 = g;
-                break;
-
-            case 2:
-                g_2 = g;
-                break;
-            
-            case 3:
-                g_3 = g;
-                break;
-            
-            case 4:
-                g_4 = g;
-                break;
-            
-            case 5:
-                g_5 = g;
-                break;
-            
-            case 6:
-                g_6 = g;
-                break;
-            
-            case 7:
-                g_7 = g;
-                break;
-            
-            case 8:
-                g_8 = g;
-                break;
-
-            case 9:
-                g_9 = g;
-                break;
-
-            case 10:
-                g_10 = g;
-                break;
-
-            default:
-                break;
-        }
-    }
-
-    float finalSum = calculateSum(n, g_1, g_2, g_3, g_4, g_5, g_6, g_7, g_8, g_9, g_10);
+    int n = readValidInput(1, 10, 9);
+    float grades[10];
+    readGrades(n, grades);
+    
+    float finalSum = calculateSum(n, grades);
     float finalAvg = calculateAvg(n, finalSum);
     
     long long periodData = readPeriod();
@@ -436,54 +356,10 @@ int main(void)
     printf("\n");
     printf("Total sessions: %d, Absent sessions: %d | Non - Attendance Rate: %.2f%%\n", t, a, r);
     printf("Grades: ");
-    for (int i = 1; i <= n; i++) 
+    for (int i = 0; i < n; i++)
     {
-        switch (i)
-        {
-            case 1:
-                printf("%.1f", g_1); 
-                break;
-
-            case 2:
-                printf("%.1f", g_2);
-                break;
-            
-            case 3:
-                printf("%.1f", g_3);
-                break;
-            
-            case 4:
-                printf("%.1f", g_4); 
-                break;
-            
-            case 5:
-                printf("%.1f", g_5); 
-                break;
-            
-            case 6:
-                printf("%.1f", g_6); 
-                break;
-            
-            case 7:
-                printf("%.1f", g_7);
-                break;
-            
-            case 8:
-                printf("%.1f", g_8);
-                break;
-
-            case 9:
-                printf("%.1f", g_9); 
-                break;
-
-            case 10:
-                printf("%.1f", g_10);
-                break;
-
-            default:
-                break;
-        }   
-        if (i < n) 
+        printf("%.1f", grades[i]);
+        if (i < n - 1)
         {
             printf(", ");
         }
