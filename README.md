@@ -46,18 +46,19 @@
 
 #### 2. Clarification
 - Focus / Scope:
-  - Store the subject's schedule (weekday, start time, end time) into 1-dimensional arrays instead of using separate individual variables (e.g., w_1, h1_1).
+  - Store the subject's schedule (weekday, start time, end time) into a 1-dimensional array (`eT`) instead of using separate individual variables (`eT_1`, `eT_2`, `eT_3`).
   - Accurately input, record, and display the schedule dynamically based on the actual number of studying days (d).
 - Input:
   - Number of studying days (d) (guaranteed to be integer, range [1; 3])
   - Array `w` (1D array of integers, size 3) to store Weekdays, range [2; 8]
   - Arrays `h1`, `m1` (1D arrays of integers, size 3) to store Start hours [0; 23] and minutes [0; 59]
   - Arrays `h2`, `m2` (1D arrays of integers, size 3) to store End hours [0; 23] and minutes [0; 59]
+  - Array `eT` (1D array of integers, size 3) to store the encoded schedule of each valid session.
 - Output:
-  - Display the formatted schedule directly by iterating through the stored elements in the arrays.
+  - Display the formatted schedule directly by iterating through the stored elements in the `eT` array and decoding each session.
 - Business rules:
-  - Store each valid day's schedule data into index `i` of the respective arrays (with `i` from 0 to d-1).
-  - Use a loop to traverse the arrays for inputting data and another loop to display the complete schedule.
+  - Encode each valid session's schedule into a single integer (`w * 100000000 + h1 * 1000000 + m1 * 10000 + h2 * 100 + m2`) and store it into `eT[i]` (with `i` from 0 to `d - 1`).
+  - Use a loop to traverse the `eT` array for inputting data (`readExactSchedule(i + 1)`) and another loop to decode and display the complete schedule (`printDecodedSchedule(eT[i])`), separated by `", "`.
   - End time must be strictly after Start time for each session at index `i` (h2[i] * 60 + m2[i] > h1[i] * 60 + m1[i]).
 - Edge cases:
   - Array bounds: Ensure the input loops strictly respect the array size limit (d <= 3) to prevent buffer overflow.

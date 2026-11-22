@@ -189,6 +189,26 @@ void printDecodedSchedule(int eT)
     printf(" %02d:%02d - %02d:%02d", h1, m1, h2, m2);
 }
 
+void readSchedule(int d, int eT[])
+{
+    for (int i = 0; i < d; i++)
+    {
+        eT[i] = readExactSchedule(i + 1);
+    }
+}
+
+void printSchedule(int d, int eT[])
+{
+    for (int i = 0; i < d; i++)
+    {
+        printDecodedSchedule(eT[i]);
+        if (i < d - 1)
+        {
+            printf(", ");
+        }
+    }
+}
+
 bool isDateInvalid(int d, int m, int y) 
 {
     if (y < 2026 || y > 2032 || m < 1 || m > 12 || d < 1) 
@@ -300,20 +320,8 @@ int main(void)
     int s = readValidInput(1, 2147483647, 2); // 2147483647 is the largest value for an 'int', which also means its value is greater than 0.
     int d = readValidInput(1, 3, 3);    
 
-    int eT_1 = 0, eT_2 = 0, eT_3 = 0;
-
-    if (d >= 1) 
-    {
-        eT_1 = readExactSchedule(1);
-    }
-    if (d >= 2) 
-    {
-        eT_2 = readExactSchedule(2);
-    }
-    if (d == 3) 
-    {
-        eT_3 = readExactSchedule(3);
-    }
+    int eT[3];
+    readSchedule(d, eT);
 
     int attendanceData = readAttendance();
     int t = attendanceData / 100;
@@ -336,24 +344,11 @@ int main(void)
     printf("Your subject's credits currently: %d\n", x);
     printf("Current semester: %d\n", s);
     printf("Number of studying days per week: %d\n", d);
+    
     printf("Schedule: ");
-
-    if (d >= 1) 
-    {
-        printDecodedSchedule(eT_1);
-    }
-    if (d >= 2) 
-    {
-        printf(", ");
-        printDecodedSchedule(eT_2);
-    }
-    if (d == 3) 
-    {
-        printf(", ");
-        printDecodedSchedule(eT_3);
-    }
-
+    printSchedule(d, eT);
     printf("\n");
+
     printf("Total sessions: %d, Absent sessions: %d | Non - Attendance Rate: %.2f%%\n", t, a, r);
     printf("Grades: ");
     for (int i = 0; i < n; i++)
