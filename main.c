@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-float calculateSum(int n, float grades[])
+float calculateSum(float grades[], int n)
 {
     float sum = 0.0f;
     for (int i = 0; i < n; i++)
@@ -11,13 +11,15 @@ float calculateSum(int n, float grades[])
     return sum;
 }
 
-float calculateAvg(int n, float sum) 
+float calculateAvg(int n, float sum)
 {
-    if (n == 0) 
+    if (n == 0)
     {
         return 0.0f;
     }
-    return (sum / n);
+    int sum10 = (int)(sum * 10.0f + 0.5f);
+    int avg10 = (2 * sum10 + n) / (2 * n);
+    return avg10 / 10.0f;
 }
 
 bool isTimeInvalid(int h1, int m1, int h2, int m2) 
@@ -76,7 +78,7 @@ float calculateAbsentRate(int t, int a)
 
 int readValidInput(int min, int max, int promptId)
 {
-    int val;
+    long long val;
     bool isInvalid;
     do 
     {
@@ -109,8 +111,14 @@ int readValidInput(int min, int max, int promptId)
             case 9:
                 printf("Enter number of tests: ");
                 break;
+            case 10:
+                printf("Enter number of subjects (1-10): ");
+                break;
+            case 11:
+                printf("Enter semester to search: ");
+                break;
         }
-        scanf("%d", &val);
+        scanf("%lld", &val);
         isInvalid = !(val >= min && val <= max);
 
         if (isInvalid)
@@ -123,7 +131,7 @@ int readValidInput(int min, int max, int promptId)
             {
                 printf("Error: Not valid, retry.\n");
             }
-            else if (promptId == 9)
+            else if (promptId == 9 || promptId == 10)
             {
                 printf("Error: Entry must be between 1 and 10\n");
             }
@@ -133,7 +141,7 @@ int readValidInput(int min, int max, int promptId)
             }
         }
     } while (isInvalid);
-    return val;
+    return (int)val;
 }
 
 int readAttendance(void)
@@ -189,7 +197,7 @@ void printDecodedSchedule(int eT)
     printf(" %02d:%02d - %02d:%02d", h1, m1, h2, m2);
 }
 
-void readSchedule(int d, int eT[])
+void readSchedule(int eT[], int d)
 {
     for (int i = 0; i < d; i++)
     {
@@ -197,7 +205,7 @@ void readSchedule(int d, int eT[])
     }
 }
 
-void printSchedule(int d, int eT[])
+void printSchedule(int eT[], int d)
 {
     for (int i = 0; i < d; i++)
     {
@@ -262,7 +270,7 @@ int readExactDate(int promptId)
     return currentDate;
 }
 
-void readGrades(int n, float grades[])
+void readGrades(float grades[], int n)
 {
     float g;
     bool isGInvalid;
@@ -279,6 +287,8 @@ void readGrades(int n, float grades[])
                 printf("Error: Entry must be between 0.0 and 10.0\n");
             }
         } while (isGInvalid);
+
+        g = ((int)(g * 10.0f + 0.5f)) / 10.0f;
 
         grades[i] = g;
     }
@@ -316,55 +326,96 @@ void printExactDate(int dateVal)
 
 int main(void)
 {
-    int x = readValidInput(0, 20, 1);
-    int s = readValidInput(1, 2147483647, 2); // 2147483647 is the largest value for an 'int', which also means its value is greater than 0.
-    int d = readValidInput(1, 3, 3);    
+    int numSubjects = readValidInput(1, 10, 10);
 
-    int eT[3];
-    readSchedule(d, eT);
+    int credits[10];
+    int semesters[10];
+    int d[10];
+    int eT[10][3];
+    int t[10];
+    int a[10];
+    float r[10];
+    int numTests[10];
+    float grades[10][10];
+    float finalSum[10];
+    float finalAvg[10];
+    int beginningDate[10];
+    int endingDate[10];
 
-    int attendanceData = readAttendance();
-    int t = attendanceData / 100;
-    int a = attendanceData % 100;
-
-    float r = calculateAbsentRate(t, a);
-
-    int n = readValidInput(1, 10, 9);
-    float grades[10];
-    readGrades(n, grades);
-    
-    float finalSum = calculateSum(n, grades);
-    float finalAvg = calculateAvg(n, finalSum);
-    
-    long long periodData = readPeriod();
-    
-    int beginningDate = periodData / 100000000;
-    int endingDate = periodData % 100000000;
-
-    printf("Your subject's credits currently: %d\n", x);
-    printf("Current semester: %d\n", s);
-    printf("Number of studying days per week: %d\n", d);
-    
-    printf("Schedule: ");
-    printSchedule(d, eT);
-    printf("\n");
-
-    printf("Total sessions: %d, Absent sessions: %d | Non - Attendance Rate: %.2f%%\n", t, a, r);
-    printf("Grades: ");
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < numSubjects; i++)
     {
-        printf("%.1f", grades[i]);
-        if (i < n - 1)
+        printf("\n--- Subject %d ---\n", i + 1);
+
+        credits[i] = readValidInput(0, 20, 1);
+        semesters[i] = readValidInput(1, 2147483647, 2); // 2147483647 is the largest value for an 'int', which also means its value is greater than 0.
+        d[i] = readValidInput(1, 3, 3);
+
+        readSchedule(eT[i], d[i]);
+
+        int attendanceData = readAttendance();
+        t[i] = attendanceData / 100;
+        a[i] = attendanceData % 100;
+        r[i] = calculateAbsentRate(t[i], a[i]);
+
+        numTests[i] = readValidInput(1, 10, 9);
+        readGrades(grades[i], numTests[i]);
+
+        finalSum[i] = calculateSum(grades[i], numTests[i]);
+        finalAvg[i] = calculateAvg(numTests[i], finalSum[i]);
+
+        long long periodData = readPeriod();
+        beginningDate[i] = periodData / 100000000;
+        endingDate[i] = periodData % 100000000;
+    }
+
+    printf("\n");
+    int searchS = readValidInput(1, 2147483647, 11);
+
+    int foundCount = 0;
+    int totalCredits = 0;
+
+    printf("\n=== Subjects in Semester %d ===\n", searchS);
+    for (int i = 0; i < numSubjects; i++)
+    {
+        if (semesters[i] == searchS)
         {
-            printf(", ");
+            foundCount++;
+            totalCredits += credits[i];
+
+            printf("\n--- Subject %d ---\n", i + 1);
+            printf("Your subject's credits currently: %d\n", credits[i]);
+            printf("Current semester: %d\n", semesters[i]);
+            printf("Number of studying days per week: %d\n", d[i]);
+
+            printf("Schedule: ");
+            printSchedule(eT[i], d[i]);
+            printf("\n");
+
+            printf("Total sessions: %d, Absent sessions: %d | Non - Attendance Rate: %.2f%%\n", t[i], a[i], r[i]);
+
+            printf("Grades: ");
+            for (int j = 0; j < numTests[i]; j++)
+            {
+                printf("%.1f", grades[i][j]);
+                if (j < numTests[i] - 1)
+                {
+                    printf(", ");
+                }
+            }
+            printf(" | Sum: %.1f, Avg: %.1f\n", finalSum[i], finalAvg[i]);
+
+            printf("Beginning time: ");
+            printExactDate(beginningDate[i]);
+            printf("Ending time: ");
+            printExactDate(endingDate[i]);
         }
     }
-    printf(" | Sum: %.1f, Avg: %.1f\n", finalSum, finalAvg);
-    
-    printf("Beginning time: ");
-    printExactDate(beginningDate);
-    printf("Ending time: ");
-    printExactDate(endingDate);
+
+    if (foundCount == 0)
+    {
+        printf("No subjects found for this semester.\n");
+    }
+    printf("Total credits for semester %d: %d\n", searchS, totalCredits);
 
     return 0;
 }
