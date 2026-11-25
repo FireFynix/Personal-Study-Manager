@@ -39,6 +39,46 @@
 
 ## 3. Versions
 
+### v0.9.0
+
+#### 1. Requirements: RC007
+- Tôi muốn quản lý nhiều môn cùng lúc. Với mỗi môn, chương trình lưu tín chỉ và học kỳ; tôi xem được tổng tín chỉ và danh sách môn theo từng học kỳ.
+
+#### 2. Clarification
+- Focus / Scope:
+  - Upgrade the program from managing a single subject to managing multiple subjects simultaneously using parallel 1D and 2D arrays.
+  - Retain all previously implemented information for each subject (credits, semester, schedule, attendance, test grades, and beginning/ending dates) using a subject-by-subject input flow.
+  - Add the ability to filter and display the list of subjects, along with the total credits, for a specific semester.
+- Input:
+  - Number of subjects (`n`) (guaranteed to be integer, range [1; 10]).
+  - For each subject `i` (from `0` to `n - 1`), store all existing attributes:
+    - Credits (`credits[i]`, integer, range [0; 20]).
+    - Semester (`semesters[i]`, integer, range > 0).
+    - Schedule: number of studying days (`d[i]`, integer, range [1; 3]) and encoded sessions (`eT[i][3]` storing weekday [2; 8], start/end time).
+    - Attendance: total sessions (`t[i]`, integer, range [0; 30]) and absent sessions (`a[i]`, integer, range [0; 30]).
+    - Test grades: number of tests (`num_tests[i]`, integer, range [1; 10]) and individual grades (`grades[i][10]`, real, range [0.0; 10.0]).
+    - Duration: beginning date (`begin_date[i]`) and ending date (`end_date[i]`, valid calendar dates in range [2026; 2032]).
+  - A specific semester to search/view (`search_s`, integer, range > 0).
+  - Input order:
+    1. Input the total number of subjects (`n`).
+    2. For each subject `i` from `0` to `n - 1` (subject-by-subject): input all attributes of subject `i` in the established order (credits -> semester -> schedule -> attendance -> test grades -> beginning/ending dates) before moving to subject `i + 1`.
+    3. After all subjects are recorded, input the target semester (`search_s`) to filter.
+- Output:
+  - Display the list of recorded subjects (along with their stored information) that belong to the inputted semester (`search_s`).
+  - Display the Total Credits calculated from the subjects in that specific semester.
+- Business rules:
+  - Data mapping: Each subject `i` (`0 <= i <= n - 1`) is associated with its corresponding attributes at index `i` across all parallel arrays (`credits[i]`, `semesters[i]`, `eT[i]`, `t[i]`, `a[i]`, `grades[i]`, `begin_date[i]`, `end_date[i]`).
+  - Existing per-subject rules: All validation and calculation rules from previous requirements (end time > start time, `t >= a`, non-attendance rate `r`, grade `sum`/`avg`, valid calendar dates with `begin_date < end_date`) remain unchanged for each subject `i`.
+  - Filtering condition: A subject `i` is included in the result if and only if `semesters[i] == search_s`.
+  - Total credits formula: `total_credits = sum of all credits[i]` where `semesters[i] == search_s` (equals `0` if no subjects match).
+- Edge cases:
+  - Array bounds: Ensure the number of subjects strictly respects the array size limit (`n <= 10`) to prevent buffer overflow.
+  - No subjects found: If no elements in `semesters` match `search_s`, display an appropriate message (e.g., "No subjects found for this semester") and `total_credits = 0`.
+- Out of scope:
+  - Using string arrays for actual subject names or class codes (handling by index/ID like Subject 1, Subject 2 is sufficient).
+  - Using Structs to group subject data (keeping it to parallel arrays).
+
+
 ### v0.8.0
 
 #### 1. Requirements: RPM005
