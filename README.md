@@ -69,18 +69,20 @@
 - Business rules:
   - Data mapping: Each subject `i` (`0 <= i <= n - 1`) is associated with its corresponding attributes at index `i` across all parallel arrays (`credits[i]`, `semesters[i]`, `eT[i]`, `t[i]`, `a[i]`, `grades[i]`, `begin_date[i]`, `end_date[i]`).
   - Existing per-subject rules: All validation and calculation rules from previous requirements (end time > start time, `t >= a`, non-attendance rate `r`, grade `sum`/`avg`, valid calendar dates with `begin_date < end_date`) remain unchanged for each subject `i`.
- - Grade precision rule: Each valid test grade is rounded to 1 decimal place (round half up) before being stored in `grades[i][j]`. Both `sum` and `avg` are calculated directly from these stored values so that the displayed sum always matches the sum of the displayed grades.
+  - Grade precision rule: Each valid test grade is rounded to 1 decimal place (round half up) before being stored in `grades[i][j]`. Both `sum` and `avg` are calculated directly from these stored values so that the displayed sum always matches the sum of the displayed grades.
   - Average rounding rule: `avg` is rounded to 1 decimal place using the round half up rule (e.g., `8.25` rounds to `8.3`).
   - Filtering condition: A subject `i` is included in the result if and only if `semesters[i] == search_s`.
   - Total credits formula: `total_credits = sum of all credits[i]` where `semesters[i] == search_s` (equals `0` if no subjects match).
 - Edge cases:
   - Array bounds: Ensure the number of subjects strictly respects the array size limit (`n <= 10`) to prevent buffer overflow.
   - No subjects found: If no elements in `semesters` match `search_s`, display an appropriate message (e.g., "No subjects found for this semester") and `total_credits = 0`.
+  - Array bounds: Ensure the number of subjects strictly respects the array size limit (`n <= 10`) to prevent buffer overflow.
+  - No subjects found: If no elements in `semesters` match `search_s`, display an appropriate message (e.g., "No subjects found for this semester") and `total_credits = 0`.
+  - Grade with more than 1 decimal place: e.g., `8.04` and `8.04` are rounded to `8.0` and `8.0` when stored, resulting in `Sum: 16.0` and `Avg: 8.0`.
+  - Halfway average value: e.g., `8.0` and `8.5` (exact average `8.25`) rounds half up to `Avg: 8.3`.
 - Out of scope:
   - Using string arrays for actual subject names or class codes (handling by index/ID like Subject 1, Subject 2 is sufficient).
   - Using Structs to group subject data (keeping it to parallel arrays)
-  - Grade with more than 1 decimal place: e.g., `8.04` and `8.04` are rounded to `8.0` and `8.0` when stored, resulting in `Sum: 16.0` and `Avg: 8.0`.
-  - Halfway average value: e.g., `8.0` and `8.5` (exact average `8.25`) rounds half up to `Avg: 8.3`.
 
 
 ### v0.8.0

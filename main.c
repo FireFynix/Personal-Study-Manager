@@ -17,8 +17,9 @@ float calculateAvg(int n, float sum)
     {
         return 0.0f;
     }
-    float avg = sum / n;
-    return ((int)(avg * 10.0f + 0.5f)) / 10.0f;
+    int sum10 = (int)(sum * 10.0f + 0.5f);
+    int avg10 = (2 * sum10 + n) / (2 * n);
+    return avg10 / 10.0f;
 }
 
 bool isTimeInvalid(int h1, int m1, int h2, int m2) 
@@ -288,10 +289,6 @@ void readGrades(float grades[], int n)
         } while (isGInvalid);
 
         g = ((int)(g * 10.0f + 0.5f)) / 10.0f;
-        if (g == 0.0f)
-        {
-            g = 0.0f;
-        }
 
         grades[i] = g;
     }
