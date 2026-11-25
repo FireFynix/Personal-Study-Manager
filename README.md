@@ -76,13 +76,11 @@
 - Edge cases:
   - Array bounds: Ensure the number of subjects strictly respects the array size limit (`n <= 10`) to prevent buffer overflow.
   - No subjects found: If no elements in `semesters` match `search_s`, display an appropriate message (e.g., "No subjects found for this semester") and `total_credits = 0`.
-  - Array bounds: Ensure the number of subjects strictly respects the array size limit (`n <= 10`) to prevent buffer overflow.
-  - No subjects found: If no elements in `semesters` match `search_s`, display an appropriate message (e.g., "No subjects found for this semester") and `total_credits = 0`.
   - Grade with more than 1 decimal place: e.g., `8.04` and `8.04` are rounded to `8.0` and `8.0` when stored, resulting in `Sum: 16.0` and `Avg: 8.0`.
   - Halfway average value: e.g., `8.0` and `8.5` (exact average `8.25`) rounds half up to `Avg: 8.3`.
 - Out of scope:
   - Using string arrays for actual subject names or class codes (handling by index/ID like Subject 1, Subject 2 is sufficient).
-  - Using Structs to group subject data (keeping it to parallel arrays)
+  - Using Structs to group subject data (keeping it to parallel arrays).
 
 
 ### v0.8.0
