@@ -39,6 +39,37 @@
 
 ## 3. Versions
 
+### v0.10.0
+
+#### 1. Requirements: RC008
+- Tôi muốn xem bảng điểm nhiều môn, mỗi môn có số bài kiểm tra riêng, và xem được điểm trung bình của từng môn.
+
+#### 2. Clarification
+- Focus / Scope:
+  - Extend RC007 by adding a dedicated multi-subject gradebook view for ALL recorded subjects (not filtered by semester).
+  - Display each subject's independent list of test grades (based on its own `num_tests[i]`) alongside its average score (`avg[i]`).
+- Input:
+  - No new inputs (reuses `n`, `num_tests[i]`, and `grades[i][j]` unchanged from RC007).
+  - Clarification on existing decimal input: each test grade `grades[i][j]` is a real number in range [0.0; 10.0] with a precision of 1 digit after the decimal point (e.g., `8.5`).
+- Output:
+  - Display the gradebook for all `n` subjects (from Subject 1 to Subject `n`). For each subject `i`:
+    - Recorded test grades: `grades[i][0]` to `grades[i][num_tests[i] - 1]` (real numbers, range [0.0; 10.0], precision of 1 digit after decimal point, e.g., `7.0, 8.5`).
+    - Average score `avg[i]` (real number, range [0.0; 10.0], precision of 1 digit after decimal point, e.g., `7.8`).
+- Business rules:
+  - Uneven row mapping: For each subject `i` (`0 <= i <= n - 1`), only columns `0` through `num_tests[i] - 1` in row `i` of `grades` are valid. Unused columns (`j >= num_tests[i]`) are excluded from display and calculation.
+  - Average score formula: `avg[i] = (grades[i][0] + grades[i][1] + ... + grades[i][num_tests[i] - 1]) / num_tests[i]`, rounded to 1 decimal place when displayed.
+- Edge cases:
+  - Uneven number of tests across subjects:
+    - Input: Subject 1 has `num_tests[0] = 2`, Subject 2 has `num_tests[1] = 5`.
+    - Expected Response: Subject 1 displays and averages only its 2 grades; Subject 2 displays and averages its 5 grades without reading uninitialized elements.
+  - Repeating decimal average:
+    - Input: Subject 1 has 3 grades `8.0, 8.0, 9.0` (exact average `8.333...`).
+    - Expected Response: Display `avg[0]` rounded to 1 decimal place (`8.3`).
+- Out of scope:
+  - Filtering the gradebook by semester (already handled in RC007).
+  - Calculating credit-weighted semester GPA (handled in RC009).
+  - Weighted test grades, sorting, editing, or deleting recorded grades.
+
 ### v0.9.0
 
 #### 1. Requirements: RC007
