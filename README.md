@@ -39,7 +39,7 @@
 
 ## 3. Versions
 
-### v0.9.0
+### v0.10.0
 
 #### 1. Requirements: RC008
 - Tôi muốn xem bảng điểm nhiều môn, mỗi môn có số bài kiểm tra riêng, và xem được điểm trung bình của từng môn.
