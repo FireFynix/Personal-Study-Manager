@@ -324,6 +324,24 @@ void printExactDate(int dateVal)
     printf("%02d/%02d/%04d\n", d, m, y);
 }
 
+void printGradebook(int numSubjects, int numTests[], float grades[][10], float finalAvg[])
+{
+    printf("\n=== Multi-Subject Gradebook ===\n");
+    for (int i = 0; i < numSubjects; i++)
+    {
+        printf("Subject %d | Grades: ", i + 1);
+        for (int j = 0; j < numTests[i]; j++)
+        {
+            printf("%.1f", grades[i][j]);
+            if (j < numTests[i] - 1)
+            {
+                printf(", ");
+            }
+        }
+        printf(" | Avg: %.1f\n", finalAvg[i]);
+    }
+}
+
 int main(void)
 {
     int numSubjects = readValidInput(1, 10, 10);
@@ -416,6 +434,8 @@ int main(void)
         printf("No subjects found for this semester.\n");
     }
     printf("Total credits for semester %d: %d\n", searchS, totalCredits);
+
+    printGradebook(numSubjects, numTests, grades, finalAvg);
 
     return 0;
 }
