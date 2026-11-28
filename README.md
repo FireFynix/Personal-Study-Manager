@@ -39,6 +39,51 @@
 
 ## 3. Versions
 
+### v0.11.0
+
+#### 1. Requirements: RC009
+- Tôi muốn tính GPA của một học kỳ, trong đó mỗi môn được tính theo tín chỉ của chính môn đó.
+
+#### 2. Clarification
+- Focus / Scope:
+  - Calculate and display the weighted GPA of a specific semester based on each subject's average grade and its corresponding credits.
+  - Reuse the existing 1-dimensional parallel arrays (`credits`, `semesters`, `avg`) from RC007 and RC008.
+- Input:
+  - Target semester to calculate GPA (`search_s`) (guaranteed to be integer, range > 0).
+  - Existing data from previous requirements (for `num_subjects` subjects, range [1; 10]):
+    - Array `semesters` (1D array of integers, size 10, range > 0) storing the semester of each subject.
+    - Array `credits` (1D array of integers, size 10, range [0; 20]) storing the credits of each subject.
+    - Array `avg` (1D array of real numbers, size 10, range [0.0; 10.0]) storing the exact (unrounded) average grade of each subject calculated in RC008 (only rounded to 1 decimal place for display in RC008).
+- Output:
+  - Display the semester's GPA (`gpa`) (real number, range [0.00; 10.00], precision of 2 digits after the decimal point), e.g., `"Semester X GPA: Y.YY"`.
+  - Or display the corresponding error/notice message for the sub-branches.
+- Business rules:
+  - Include all recorded subjects belonging to `search_s` in the GPA calculation, regardless of their beginning or ending dates.
+  - Initialize `found_subjects = 0`, `total_credits = 0`, and `weighted_sum = 0.0`.
+  - For each subject where `semesters[i] == search_s`:
+    - `found_subjects = found_subjects + 1`
+    - `weighted_sum = weighted_sum + (avg[i] * credits[i])` (using the exact, unrounded floating-point value of `avg[i]` without intermediate rounding).
+    - `total_credits = total_credits + credits[i]`
+  - Determine the final result based on 3 mutually exclusive branches:
+    - Main branch (`found_subjects > 0` AND `total_credits > 0`): Calculate `gpa = weighted_sum / total_credits` (using floating-point division; rounding to 2 decimal places is applied only when displaying `"Semester X GPA: Y.YY"`).
+    - Sub-branch 1 (`found_subjects == 0`): No subjects belong to `search_s`; do not compute GPA, display `"No subjects found for this semester."`.
+    - Sub-branch 2 (`found_subjects > 0` AND `total_credits == 0`): Subjects exist in `search_s` but their total credits equal 0; do not divide by zero, display `"Cannot calculate GPA (total credits is 0)."`.
+- Edge cases:
+  - Invalid semester input:
+    - Input: `search_s <= 0` (e.g., `search_s = 0, -2`)
+    - Expected Response: Display `"Error: not valid, please retry."` and ask to re-enter.
+  - No subjects found in the semester (Sub-branch 1):
+    - Input: `search_s` does not match any element in `semesters` (`found_subjects == 0`).
+    - Expected Response: Display `"No subjects found for this semester."` and do not compute GPA.
+  - Total credits equal to 0 (Sub-branch 2):
+    - Input: At least 1 subject matches `search_s` (`found_subjects > 0`), but all matching subjects have `credits[i] == 0` (`total_credits == 0`).
+- Expected Response: Display `"Cannot calculate GPA (total credits is 0)."` instead of dividing by zero.
+- Out of scope:
+  - Converting GPA to letter grades (A+ to F) or the 4.0 grading scale (handled in Stage 3 / RPM006).
+  - Calculating cumulative GPA (CGPA) across multiple semesters.
+  - Using Structs or string arrays to store subject names.
+  - Filtering out upcoming/future subjects based on their beginning date (`begin_date`) or comparing against the current date.
+
 ### v0.10.0
 
 #### 1. Requirements: RC008
