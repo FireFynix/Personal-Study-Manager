@@ -347,6 +347,38 @@ void printGradebook(int numTests[], float grades[][10], float finalAvg[], int nu
     }
 }
 
+void printSemesterGpa(int semesters[], int credits[], float finalSum[], int numTests[], int numSubjects, int searchS)
+{
+    int foundSubjects = 0;
+    int totalCredits = 0;
+    float weightedSum = 0.0f;
+
+    for (int i = 0; i < numSubjects; i++)
+    {
+        if (semesters[i] == searchS)
+        {
+            float exactAvg = finalSum[i] / numTests[i];
+            foundSubjects++;
+            weightedSum += exactAvg * credits[i];
+            totalCredits += credits[i];
+        }
+    }
+
+    if (foundSubjects == 0)
+    {
+        printf("No subjects found for this semester.\n");
+    }
+    else if (totalCredits == 0)
+    {
+        printf("Cannot calculate GPA (total credits is 0).\n");
+    }
+    else
+    {
+        float gpa = weightedSum / totalCredits;
+        printf("Semester %d GPA: %.2f\n", searchS, gpa);
+    }
+}
+
 int main(void)
 {
     int numSubjects = readValidInput(1, 10, 10);
@@ -435,5 +467,7 @@ int main(void)
 
     printGradebook(numTests, grades, finalAvg, numSubjects);
 
+    printSemesterGpa(semesters, credits, finalSum, numTests, numSubjects, searchS);
+    
     return 0;
 }
